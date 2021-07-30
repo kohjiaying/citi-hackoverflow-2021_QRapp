@@ -7,7 +7,7 @@ class MyVouchersScrollView extends Component {
    state = {
 	  modalVisible: false,
       names: [
-         {'name': 'Ben', 'id': 'wjhe34', 'voucherid': 'a', 'storeid': 'a10'},
+         {'name': 'Voucher Name', 'id': 'wjhe34', 'voucherid': 'a', 'storeid': 'a10'},
          {'name': 'Susan', 'id': 2, 'voucherid': 'b', 'storeid': 'b20'},
          {'name': 'Robert', 'id': 3, 'voucherid': 'c', 'storeid': 'c30'},
          {'name': 'Mary', 'id': 4, 'voucherid': 'd', 'storeid': 'd40'},
@@ -43,10 +43,10 @@ class MyVouchersScrollView extends Component {
                      <TouchableOpacity key = {item.id} style = {styles.item} 
 					   onPress={() => {
 						this.setQRvalue(item);
-            this.setModalVisible(true);
-			this.setSelectedItem(item);
-          }}>
-                        <Text>{item.name}</Text>
+						this.setModalVisible(true);
+						this.setSelectedItem(item);
+					  }}>
+                        <Text style = {styles.itemcontent} >{item.name}</Text>
                      </TouchableOpacity>
                   ))
                 }
@@ -92,12 +92,20 @@ const styles = StyleSheet.create ({
 	header: {
 		fontSize: 20
 	},
+	itemcontent: {
+	  fontSize: 20,
+	  color: 'white'
+	},
     item: {
-      padding: 100,
+      padding: 0,
       margin: 2,
       borderColor: '#414757',
       borderWidth: 1,
       backgroundColor: '#560CCE',
+	  width: 200,
+	  height: 200,
+	  alignItems: 'center',
+      justifyContent: 'center',
    },
    modalcontainer: {
 		alignItems: 'center',
@@ -125,7 +133,8 @@ const styles = StyleSheet.create ({
     alignItems: 'center',
     backgroundColor: '#560CCE',
     padding: 10,
-	width: '100%'
+	width: '100%',
+	marginTop: 10
     },
 	buttonClose: {
 	  backgroundColor: "#560CCE",

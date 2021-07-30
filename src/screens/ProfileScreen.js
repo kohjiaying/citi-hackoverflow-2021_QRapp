@@ -77,8 +77,9 @@ export default function ProfileScreen({navigation}) {
 							  <Pressable
 								  style={[styles.button, styles.buttonClose]}
 								  onPress={() => {
-									  Alert.alert("I am an alert!");
+									  navigation.navigate('StartScreen')
 									  setModalVisible(!modalVisible)
+									  
 								  }}
 							  >
 								  <Text style={styles.textStyle}>Yes</Text>
