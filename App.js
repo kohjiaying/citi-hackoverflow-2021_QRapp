@@ -8,6 +8,10 @@ import {
   ProfileScreen,
   FavouriteScreen,
   CartScreen,
+  StoreLoginScreen,
+  SearchScreen,
+  ScanScreen,
+  CashierProfileScreen,
 } from './src/screens'
 import { theme } from './src/core/theme';
 import { Provider } from 'react-native-paper';
@@ -65,6 +69,42 @@ return <Ionicons name={iconName} size={size} color={color}/>;
   );
 }
 
+function StoreHomeScreen({navigation}) {
+  return (
+    <Tab.Navigator
+    screenOptions={({ route }) => ({
+      tabBarIcon: ({ focused, color, size }) => {
+     let iconName;
+     if (route.name === 'Scan QR') {
+        iconName = focused
+        ? 'ios-qr-code'
+        : 'ios-qr-code-outline';
+      } else if (route.name === 'Search') {
+        iconName = focused
+        ? 'search'
+        : 'search-outline';
+      }
+      else if (route.name === 'Profile') {
+        iconName = focused
+        ? 'person'
+        : 'person-outline';
+      }
+return <Ionicons name={iconName} size={size} color={color}/>;
+        },
+      })}
+      tabBarOptions={{
+      activeTintColor: '#560CCE',
+      inactiveTintColor: '#414757',
+      }}
+    >
+        <Tab.Screen name="Scan QR" component={ScanScreen} />
+        <Tab.Screen name="Search"  children={() => <SearchScreen navigation={SearchScreen} />} />
+        <Tab.Screen name="Profile" children={() => <CashierProfileScreen navigation={navigation} />} >
+        </Tab.Screen>
+    </Tab.Navigator>
+  );
+}
+
 
 export default function App() {
   return (
@@ -80,6 +120,8 @@ export default function App() {
           <Stack.Screen name="LoginScreen" component={LoginScreen} />
           <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
           <Stack.Screen name="AppDrawer" component={AppDrawer}/>
+		  <Stack.Screen name="StoreLoginScreen" component={StoreLoginScreen}/>
+		  <Stack.Screen name="StoreAppDrawer" component={StoreAppDrawer}/>
           <Stack.Screen
             name="ResetPasswordScreen"
             component={ResetPasswordScreen}
@@ -96,6 +138,16 @@ function AppDrawer({navigation}) {
   return (
       <Drawer.Navigator initialRouteName="HomeScreen">
         <Drawer.Screen name="Home" component={HomeScreen} />
+        <Drawer.Screen name="Favourites" component={FavouriteScreen} />
+        {/* <Drawer.Screen name="Logout" component={() } /> */}
+      </Drawer.Navigator>
+  )
+}
+
+function StoreAppDrawer({navigation}) {
+  return (
+      <Drawer.Navigator initialRouteName="StoreHomeScreen">
+        <Drawer.Screen name="Home" component={StoreHomeScreen} />
         <Drawer.Screen name="Favourites" component={FavouriteScreen} />
         {/* <Drawer.Screen name="Logout" component={() } /> */}
       </Drawer.Navigator>

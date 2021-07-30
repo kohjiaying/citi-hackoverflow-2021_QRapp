@@ -4,8 +4,8 @@ import Logo from '../components/Logo'
 import Header from '../components/Header'
 import Button from '../components/Button'
 import Paragraph from '../components/Paragraph'
-import { SafeAreaView } from 'react-native';
-
+import { SafeAreaView, Text, StyleSheet } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default function StartScreen({ navigation }) {
   return (
@@ -27,6 +27,17 @@ export default function StartScreen({ navigation }) {
         >
           Sign Up
       </Button>
+	  
+	  <Button
+          onPress={() => navigation.navigate('StoreLoginScreen')}
+        >
+          <Text style={styles.underline}>Store Login</Text>
+      </Button>
+	  
       </Background>
   )
 }
+
+const styles = StyleSheet.create({
+    underline: {textDecorationLine: 'underline'}
+})
