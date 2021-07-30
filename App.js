@@ -33,7 +33,7 @@ function HomeScreen({navigation}) {
         iconName = focused
         ? 'ios-add'
         : 'ios-add-outline';
-      } else if (route.name === 'Categories') {
+      } else if (route.name === 'Brands') {
         iconName = focused
         ? 'menu'
         : 'menu-outline';
@@ -57,7 +57,7 @@ return <Ionicons name={iconName} size={size} color={color}/>;
       }}
     >
         <Tab.Screen name="Explore" component={MainScreen} />
-        <Tab.Screen name="Categories"  children={() => <QueueScreen navigation={navigation} />} />
+        <Tab.Screen name="Brands"  children={() => <QueueScreen navigation={navigation} />} />
 		<Tab.Screen name="Cart"  children={() => <CartScreen navigation={navigation} />} />
         <Tab.Screen name="Profile" children={() => <ProfileScreen navigation={navigation} />} >
         </Tab.Screen>

@@ -5,9 +5,12 @@ import Header from '../components/Header'
 import Paragraph from '../components/Paragraph'
 import Button from '../components/Button'
 import { Text } from 'react-native-paper'
-import { View,StyleSheet } from 'react-native';
+import { View,StyleSheet,ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native';
 import SearchBarExample from '../components/SearchBar.js';
+import MainHeaderScrollView from '../components/MainHeaderScrollView.js';
+import LocationScrollView from '../components/LocationScrollView.js';
+import CategoryScrollView from '../components/CategoryScrollView.js';
 
 export default function MainScreen({ navigation }) {
   return (
@@ -15,7 +18,11 @@ export default function MainScreen({ navigation }) {
 		<View style={styles.container}>
 			<SearchBarExample />
         </View>
-        
+		<ScrollView>
+		<MainHeaderScrollView />   
+		<LocationScrollView />  
+		<CategoryScrollView /> 
+		</ScrollView>
      </SafeAreaView>
   )
 }
