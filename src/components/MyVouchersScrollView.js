@@ -1,37 +1,31 @@
-import React, { useState, useEffect, Component } from 'react';
-import { Text, Image, View, StyleSheet, ScrollView, Dimensions, TouchableOpacity,Modal,Alert,Pressable } from 'react-native';
-   
+import React, { Component } from 'react';
+import { Text, Image, View, StyleSheet, ScrollView, Dimensions } from 'react-native';
+
 class MyVouchersScrollView extends Component {
    
    state = {
       names: [
-         {'name': 'Ben', 'id': 123874872347},
+         {'name': 'Ben', 'id': 1},
          {'name': 'Susan', 'id': 2},
          {'name': 'Robert', 'id': 3},
          {'name': 'Mary', 'id': 4},
          {'name': 'Daniel', 'id': 5}
       ]
    }
-	  
    render() {
-	  
       return (
          <View style={styles.mainContainer}>
 		    <Text style = {styles.header}> My Vouchers </Text>
             <ScrollView horizontal={true}>
 				{
                   this.state.names.map((item, index) => (
-                     <TouchableOpacity key = {item.id} style = {styles.item} 
-					   onPress={() => {
-                       Alert.alert('test')
-					   }}>
+                     <View key = {item.id} style = {styles.item}>
                         <Text>{item.name}</Text>
-                     </TouchableOpacity>
+                     </View>
                   ))
                 }
             </ScrollView>
          </View>
-		 
       )
    }
 }
