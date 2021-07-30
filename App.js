@@ -7,6 +7,7 @@ import {
   QueueScreen,
   ProfileScreen,
   FavouriteScreen,
+  CartScreen,
 } from './src/screens'
 import { theme } from './src/core/theme';
 import { Provider } from 'react-native-paper';
@@ -32,10 +33,15 @@ function HomeScreen({navigation}) {
         iconName = focused
         ? 'ios-add'
         : 'ios-add-outline';
-      } else if (route.name === 'Queue') {
+      } else if (route.name === 'Brands') {
         iconName = focused
-        ? 'people-circle'
-        : 'people-circle-outline';
+        ? 'menu'
+        : 'menu-outline';
+      }
+	  else if (route.name === 'Cart') {
+        iconName = focused
+        ? 'ios-cart'
+        : 'ios-cart-outline';
       }
       else if (route.name === 'Profile') {
         iconName = focused
@@ -51,7 +57,8 @@ return <Ionicons name={iconName} size={size} color={color}/>;
       }}
     >
         <Tab.Screen name="Explore" component={MainScreen} />
-        <Tab.Screen name="Queue"  children={() => <QueueScreen navigation={navigation} />} />
+        <Tab.Screen name="Brands"  children={() => <QueueScreen navigation={navigation} />} />
+		<Tab.Screen name="Cart"  children={() => <CartScreen navigation={navigation} />} />
         <Tab.Screen name="Profile" children={() => <ProfileScreen navigation={navigation} />} >
         </Tab.Screen>
     </Tab.Navigator>

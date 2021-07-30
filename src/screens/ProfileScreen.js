@@ -1,36 +1,148 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
 import Background from '../components/Background'
 import Logo from '../components/Logo'
 import Header from '../components/Header'
 import Paragraph from '../components/Paragraph'
 import Button from '../components/Button'
 import { Text } from 'react-native-paper'
-import { View,StyleSheet } from 'react-native';
+import { View,StyleSheet,ScrollView,TouchableOpacity,Modal,Alert,Pressable } from 'react-native';
 import { SafeAreaView } from 'react-native';
-
+import MyVouchersScrollView from '../components/MyVouchersScrollView.js';
+import MyLoyaltyScrollView from '../components/MyLoyaltyScrollView.js';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default function ProfileScreen({navigation}) {
+   const [value, setValue] = useState()
+   const [modalVisible, setModalVisible] = useState(false);
+   const [actionTriggered, setActionTriggered] = useState('');
+ 
   return (
     <SafeAreaView style={{ flex: 1 }}>
-        <View style={styles.container}>
-            <Text> Profile Screen</Text>
-            <Text> Profile Screen</Text>
-            <Text> Profile Screen</Text>
-            <Text> Profile Screen</Text>
-            <Text> Profile Screen</Text>
-            <Text> Profile Screen</Text>
+        <View style={styles.headerView}>
+            <Text style={styles.header} >My Account</Text>
         </View>
+		<ScrollView>
+		<MyVouchersScrollView />   
+		<MyLoyaltyScrollView />  
+		<TouchableOpacity onPress={() => {
+						  setModalVisible(true);
+						  setActionTriggered('ACTION_1'); // HERE
+		}}
+		>
+		<View style={{flexDirection: "row", borderColor:'black', borderWidth: 1, marginTop:20, margin:5}}>
+			<Icon name="user" size={20} color="black" style={{padding: 10}}/>
+			<Text style={{fontSize: 20, padding: 5, marginTop: 1}}>Profile Details</Text>
+		</View>
+		</TouchableOpacity>
+		
+		<TouchableOpacity onPress={() => {
+						  setModalVisible(true);
+						  setActionTriggered('ACTION_2'); // HERE
+		}}>
+		<View style={{flexDirection: "row", borderColor:'black', borderWidth: 1, marginTop:10, margin:5}}>
+			<Icon name="power-off" size={20} color="black" style={{padding: 10}}/>
+			<Text style={{fontSize: 20, padding: 5}}>Log Out</Text>
+		</View>
+		</TouchableOpacity>
+		
+		<Modal 
+				animationType="slide"
+				transparent={true}
+				visible={modalVisible}
+				onRequestClose={() => {
+				  setModalVisible(!modalVisible);
+				}}
+			>
+			{/* inside the modal view, depending on the action type do something */}
+			{actionTriggered === 'ACTION_1' ?
+							  <View style={styles.modalcontainer}>
+							  <View style={styles.modalcard}>
+							  <Text style={{fontSize: 20, padding: 5}}>Profile Details</Text>
+							  <Pressable
+								  style={[styles.button, styles.buttonClose]}
+								  onPress={() => {
+									  Alert.alert("I am an alert!");
+									  setModalVisible(!modalVisible)
+								  }}
+							  >
+								  <Text style={styles.textStyle}>Manage Profile Details</Text>
+							  </Pressable>
+							  </View>
+							  </View>:
+			actionTriggered === 'ACTION_2' ?
+							  <View style={styles.modalcontainer}>
+							  <View style={styles.modalcard}>
+							  <Text style={{fontSize: 20, padding: 5}}>Are you sure you want to log out?</Text>
+							  <Text style={{fontSize: 10, padding: 5, color: 'white'}}>Are you sure you want to log out?</Text>
+							  <Pressable
+								  style={[styles.button, styles.buttonClose]}
+								  onPress={() => {
+									  Alert.alert("I am an alert!");
+									  setModalVisible(!modalVisible)
+								  }}
+							  >
+								  <Text style={styles.textStyle}>Yes</Text>
+							  </Pressable>
+							  <Text style={{fontSize: 10, padding: 5, color: 'white'}}>Are you sure you want to log out?</Text>
+							  <Pressable
+								  style={[styles.button, styles.buttonClose]}
+								  onPress={() => {
+									  Alert.alert("I am an alert!");
+									  setModalVisible(!modalVisible)
+								  }}
+							  >
+								  <Text style={styles.textStyle}>No</Text>
+							  </Pressable>
+							  
+							  </View>
+							  </View>:
+			null}
+			</Modal>
+			
+		</ScrollView>
      </SafeAreaView>
   )
 }
-
-
-
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      width: '100%',
-      alignItems: 'center',
-      justifyContent: 'center',
+	headerView:{
+		backgroundColor: '#414757',
+		marginTop: 30,
+		alignItems: 'center',
+        justifyContent: 'center',
+	    padding: 15
+ 	},
+	header: {
+		fontSize: 20,
+		color: 'white'
+	},
+	modalcontainer: {
+		alignItems: 'center',
+        justifyContent: 'center',
+		flex: 1 
+	},
+	modalcard: {
+		margin: 5,
+		backgroundColor: "white",
+		borderRadius: 0,
+		padding: 10,
+		width: 350,
+		height: 500,
+		shadowColor: "#000",
+		shadowOffset: {
+		width: 100,
+		height: 100
+		},
+		shadowOpacity: 0.25,
+		shadowRadius: 4,
+		elevation: 5
+	},
+	button: {
+    alignItems: 'center',
+    backgroundColor: '#560CCE',
+    padding: 10
     },
-  })
+	buttonClose: {
+	  backgroundColor: "#560CCE",
+    },
+});
+  

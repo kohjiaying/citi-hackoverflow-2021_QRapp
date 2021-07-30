@@ -1,0 +1,55 @@
+import React, { Component } from 'react';
+import { Text, Image, View, StyleSheet, ScrollView, Dimensions } from 'react-native';
+
+class ScrollViewExample extends Component {
+   
+   state = {
+      names: [
+         {'name': 'Ben', 'id': 1},
+         {'name': 'Susan', 'id': 2},
+         {'name': 'Robert', 'id': 3},
+         {'name': 'Mary', 'id': 4},
+         {'name': 'Daniel', 'id': 5},
+         {'name': 'Laura', 'id': 6},
+         {'name': 'John', 'id': 7},
+         {'name': 'Debra', 'id': 8},
+         {'name': 'Aron', 'id': 9},
+         {'name': 'Ann', 'id': 10},
+         {'name': 'Steve', 'id': 11},
+         {'name': 'Olivia', 'id': 12}
+      ]
+   }
+   render() {
+      return (
+         <View style={styles.mainContainer}>
+            <ScrollView contentContainerStyle={{flexGrow : 1, justifyContent : 'center'}} >
+			 <View style={styles.scrollViewContainer}>
+				{
+                  this.state.names.map((item, index) => (
+                     <View key = {item.id} style = {styles.item}>
+                        <Text>{item.name}</Text>
+                     </View>
+                  ))
+                }
+			 </View>
+            </ScrollView>
+         </View>
+      )
+   }
+}
+export default ScrollViewExample
+
+const styles = StyleSheet.create ({
+	scrollView : {
+	   height : Dimensions.get('window').height, }, 
+	mainContainer : {}, 
+	scrollViewContainer : { }, 
+    item: {
+      flexDirection: 'row',
+      padding: 40,
+      margin: 2,
+      borderColor: '#414757',
+      borderWidth: 1,
+      backgroundColor: '#560CCE',
+   }
+})
