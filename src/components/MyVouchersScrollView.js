@@ -7,13 +7,13 @@ class MyVouchersScrollView extends Component {
    state = {
 	  modalVisible: false,
       names: [
-         {'name': 'Ben', 'id': 'wjhe34', 'voucherid': 'hj342', 'storeid': 'sdjh234'},
-         {'name': 'Susan', 'id': 2},
-         {'name': 'Robert', 'id': 3},
-         {'name': 'Mary', 'id': 4},
-         {'name': 'Daniel', 'id': 5}
+         {'name': 'Ben', 'id': 'wjhe34', 'voucherid': 'a', 'storeid': 'a10'},
+         {'name': 'Susan', 'id': 2, 'voucherid': 'b', 'storeid': 'b20'},
+         {'name': 'Robert', 'id': 3, 'voucherid': 'c', 'storeid': 'c30'},
+         {'name': 'Mary', 'id': 4, 'voucherid': 'd', 'storeid': 'd40'},
+         {'name': 'Daniel', 'id': 5, 'voucherid': 'e', 'storeid': 'e50'}
       ],
-	  selectedItem: {'name': 'Daniel', 'id': 5}
+	  selectedItem: {'name': 'Daniel', 'id': 5},
 	  tempStr: 'dummy1'
    }
    
@@ -25,12 +25,11 @@ class MyVouchersScrollView extends Component {
   }
   
   setQRvalue(selectedItem){
-	str1 = {selectedItem.id}
-	str2 = {selectedItem.storeid}
-	str3 = {selectedItem.voucherid}
-	tempStr = str1.concat(str2)
-	tempStr = tempStr.concat(str3)
-	this.setState({QRvalue: tempStr});
+	const str1 = selectedItem.id;
+	const str2 = selectedItem.storeid;
+	const str3 = selectedItem.voucherid;
+	const combi = str1 + str2 + str3;
+	this.setState({tempStr: combi});
   }
 	
    render() {
@@ -43,6 +42,7 @@ class MyVouchersScrollView extends Component {
                   this.state.names.map((item, index) => (
                      <TouchableOpacity key = {item.id} style = {styles.item} 
 					   onPress={() => {
+						this.setQRvalue(item);
             this.setModalVisible(true);
 			this.setSelectedItem(item);
           }}>
@@ -62,8 +62,9 @@ class MyVouchersScrollView extends Component {
 							  <View style={styles.modalcard}>
 							  <Text style={{fontSize: 20, padding: 5}}>{this.state.selectedItem.name}</Text>
 							  <QRCode
-									value= setQRvalue(this.state.selectedItem)
+									value= {this.state.tempStr}
 							  />
+							  <Text>{this.state.tempStr}</Text>
 							  <Pressable
 								  style={[styles.button, styles.buttonClose]}
 								  onPress={() => {
