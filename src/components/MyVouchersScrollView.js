@@ -63,6 +63,7 @@ class MyVouchersScrollView extends Component {
 							  <Text style={{fontSize: 20, padding: 5}}>{this.state.selectedItem.name}</Text>
 							  <QRCode
 									value= {this.state.tempStr}
+									size={300}
 							  />
 							  <Text>{this.state.tempStr}</Text>
 							  <Pressable
@@ -117,12 +118,14 @@ const styles = StyleSheet.create ({
 		},
 		shadowOpacity: 0.25,
 		shadowRadius: 4,
-		elevation: 5
+		elevation: 5,
+		alignItems: 'center',
 	},
 	button: {
     alignItems: 'center',
     backgroundColor: '#560CCE',
-    padding: 10
+    padding: 10,
+	width: '100%'
     },
 	buttonClose: {
 	  backgroundColor: "#560CCE",
