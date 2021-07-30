@@ -40,8 +40,8 @@ function HomeScreen({navigation}) {
       }
 	  else if (route.name === 'Cart') {
         iconName = focused
-        ? 'ios-basket'
-        : 'ios-basket-outline';
+        ? 'ios-cart'
+        : 'ios-cart-outline';
       }
       else if (route.name === 'Profile') {
         iconName = focused
