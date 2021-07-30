@@ -7,21 +7,30 @@ import Button from '../components/Button'
 import { Text } from 'react-native-paper'
 import { View,StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native';
-import SearchBarExample from '../components/SearchBar.js';
 
-export default function MainScreen({ navigation }) {
+
+export default function CartScreen({navigation}) {
   return (
     <SafeAreaView style={{ flex: 1 }}>
-		<View style={styles.container}>
-			<SearchBarExample />
+        <View style={styles.container}>
+            <Text> Cart Screen</Text>
+            <Text> Cart Screen</Text>
+            <Text> Cart Screen</Text>
+            <Text> Cart Screen</Text>
+            <Text> Cart Screen</Text>
+            <Text> Cart Screen</Text>
         </View>
-        
      </SafeAreaView>
   )
 }
- 
+
+
+
 const styles = StyleSheet.create({
     container: {
-      marginTop: 30
+      flex: 1,
+      width: '100%',
+      alignItems: 'center',
+      justifyContent: 'center',
     },
   })

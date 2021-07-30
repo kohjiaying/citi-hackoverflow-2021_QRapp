@@ -7,27 +7,23 @@ import Button from '../components/Button'
 import { Text } from 'react-native-paper'
 import { View,StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native';
+import ScrollViewExample from '../components/BuyScrollView.js';
+import SearchBarExample from '../components/SearchBar.js';
 
-export default function QueueScreen({navigation}) {
+export default function QueueScreen({ navigation }) {
   return (
     <SafeAreaView style={{ flex: 1 }}>
-        <View style={styles.container}>
-            <Text> QueueScreen </Text>
-            <Text> QueueScreen </Text>
-            <Text> QueueScreen </Text>
-            <Text> QueueScreen </Text>
+		<View style={styles.container}>
+			<SearchBarExample />
         </View>
+	    <ScrollViewExample />
+        
      </SafeAreaView>
   )
 }
-
-
-
+ 
 const styles = StyleSheet.create({
     container: {
-      flex: 1,
-      width: '100%',
-      alignItems: 'center',
-      justifyContent: 'center',
+      marginTop: 30
     },
   })
