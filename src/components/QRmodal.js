@@ -1,7 +1,7 @@
 import React, { useState, useEffect, Component } from 'react';
 import { Text, Image, View, StyleSheet, ScrollView, Dimensions, TouchableOpacity,Modal,Alert,Pressable } from 'react-native';
-   
-class MyVouchersScrollView extends Component {
+
+class QRmodal extends Component {
    
    state = {
       names: [
@@ -18,24 +18,11 @@ class MyVouchersScrollView extends Component {
       return (
          <View style={styles.mainContainer}>
 		    <Text style = {styles.header}> My Vouchers </Text>
-            <ScrollView horizontal={true}>
-				{
-                  this.state.names.map((item, index) => (
-                     <TouchableOpacity key = {item.id} style = {styles.item} 
-					   onPress={() => {
-                       Alert.alert('test')
-					   }}>
-                        <Text>{item.name}</Text>
-                     </TouchableOpacity>
-                  ))
-                }
-            </ScrollView>
          </View>
-		 
       )
    }
 }
-export default MyVouchersScrollView
+export default QRmodal
 
 const styles = StyleSheet.create ({
 	scrollView : {}, 
