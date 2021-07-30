@@ -11,9 +11,9 @@ export default function StartScreen({ navigation }) {
   return (
       <Background>
         <Logo />
-        <Header>Login Template</Header>
+        <Header>Give me QR.</Header>
         <Paragraph>
-          Never worry about cost splitting again.
+          I don't want cash.
       </Paragraph>
         <Button
           mode="contained"
