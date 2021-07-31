@@ -15,7 +15,7 @@ class SearchBarExample extends Component {
 
     return (
       <SearchBar
-        placeholder="Type Here..."
+        placeholder="Type Here To Search For Vouchers..."
         onChangeText={this.updateSearch}
         value={search}
       />

@@ -11,7 +11,11 @@ class MyVouchersScrollView extends Component {
          {'name': 'Susan', 'id': 2, 'voucherid': 'b', 'storeid': 'b20'},
          {'name': 'Robert', 'id': 3, 'voucherid': 'c', 'storeid': 'c30'},
          {'name': 'Mary', 'id': 4, 'voucherid': 'd', 'storeid': 'd40'},
-         {'name': 'Daniel', 'id': 5, 'voucherid': 'e', 'storeid': 'e50'}
+         {'name': 'Daniel', 'id': 5, 'voucherid': 'e', 'storeid': 'e50'},
+		 {'name': 'Susan', 'id': 6, 'voucherid': 'b', 'storeid': 'b20'},
+         {'name': 'Robert', 'id': 7, 'voucherid': 'c', 'storeid': 'c30'},
+         {'name': 'Mary', 'id': 8, 'voucherid': 'd', 'storeid': 'd40'},
+         {'name': 'Daniel', 'id': 9, 'voucherid': 'e', 'storeid': 'e50'}
       ],
 	  selectedItem: {'name': 'Daniel', 'id': 5},
 	  tempStr: 'dummy1'
@@ -36,8 +40,7 @@ class MyVouchersScrollView extends Component {
 	  
       return (
          <View style={styles.mainContainer}>
-		    <Text style = {styles.header}> My Vouchers </Text>
-            <ScrollView horizontal={true}>
+            <ScrollView contentContainerStyle={styles.container}>
 				{
                   this.state.names.map((item, index) => (
                      <TouchableOpacity key = {item.id} style = {styles.item} 
@@ -85,9 +88,14 @@ class MyVouchersScrollView extends Component {
 export default MyVouchersScrollView
 
 const styles = StyleSheet.create ({
-	scrollView : {}, 
+	container: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+	alignItems: 'center',
+    },
 	mainContainer : {
-		marginTop: 10
+		marginTop: 10,
+		marginBottom: 90
 	}, 
 	header: {
 		fontSize: 20
@@ -102,10 +110,10 @@ const styles = StyleSheet.create ({
       borderColor: '#414757',
       borderWidth: 1,
       backgroundColor: '#560CCE',
-	  width: 200,
-	  height: 200,
 	  alignItems: 'center',
       justifyContent: 'center',
+	  width: 188,
+      height: 250,
    },
    modalcontainer: {
 		alignItems: 'center',

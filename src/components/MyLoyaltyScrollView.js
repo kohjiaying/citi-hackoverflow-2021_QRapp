@@ -16,11 +16,11 @@ class MyLoyaltyScrollView extends Component {
       return (
          <View style={styles.mainContainer}>
 		    <Text style = {styles.header}> My Loyalty Cards </Text>
-            <ScrollView horizontal={true}>
+            <ScrollView contentContainerStyle={styles.container}>
 				{
                   this.state.names.map((item, index) => (
                      <View key = {item.id} style = {styles.item}>
-                        <Text>{item.name}</Text>
+                        <Text style = {styles.itemcontent}>{item.name}</Text>
                      </View>
                   ))
                 }
@@ -32,18 +32,31 @@ class MyLoyaltyScrollView extends Component {
 export default MyLoyaltyScrollView
 
 const styles = StyleSheet.create ({
-	scrollView : {}, 
+	container: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+	alignItems: 'center',
+    },
 	mainContainer : {
-		marginTop: 10
+		marginTop: 10,
+		marginBottom: 300
 	}, 
 	header: {
 		fontSize: 20
 	},
+	itemcontent: {
+	  fontSize: 20,
+	  color: 'white'
+	},
     item: {
-      padding: 100,
+      padding: 0,
       margin: 2,
       borderColor: '#414757',
       borderWidth: 1,
       backgroundColor: '#560CCE',
-   }
+	  alignItems: 'center',
+      justifyContent: 'center',
+	  width: 188,
+      height: 250,
+   },
 })
