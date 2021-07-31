@@ -12,6 +12,9 @@ import {
   SearchScreen,
   ScanScreen,
   CashierProfileScreen,
+  OwnerLoginScreen,
+  OwnerManageCashierScreen,
+  OwnerManageVoucherScreen,
 } from './src/screens'
 import { theme } from './src/core/theme';
 import { Provider } from 'react-native-paper';
@@ -64,6 +67,42 @@ return <Ionicons name={iconName} size={size} color={color}/>;
         <Tab.Screen name="Brands"  children={() => <QueueScreen navigation={navigation} />} />
 		<Tab.Screen name="Cart"  children={() => <CartScreen navigation={navigation} />} />
         <Tab.Screen name="Profile" children={() => <ProfileScreen navigation={navigation} />} >
+        </Tab.Screen>
+    </Tab.Navigator>
+  );
+}
+
+function OwnerHomeScreen({navigation}) {
+  return (
+    <Tab.Navigator
+    screenOptions={({ route }) => ({
+      tabBarIcon: ({ focused, color, size }) => {
+     let iconName;
+     if (route.name === 'Manage Cashiers') {
+        iconName = focused
+        ? 'people-circle'
+        : 'people-circle-outline';
+      } else if (route.name === 'Manage Vouchers') {
+        iconName = focused
+        ? 'gift'
+        : 'gift-outline';
+      }
+      else if (route.name === 'Profile') {
+        iconName = focused
+        ? 'person'
+        : 'person-outline';
+      }
+return <Ionicons name={iconName} size={size} color={color}/>;
+        },
+      })}
+      tabBarOptions={{
+      activeTintColor: '#560CCE',
+      inactiveTintColor: '#414757',
+      }}
+    >
+        <Tab.Screen name="Manage Cashiers" component={OwnerManageCashierScreen} />
+        <Tab.Screen name="Manage Vouchers"  children={() => <OwnerManageVoucherScreen navigation={navigation} />} />
+        <Tab.Screen name="Profile" children={() => <CashierProfileScreen navigation={navigation} />} >
         </Tab.Screen>
     </Tab.Navigator>
   );
@@ -122,6 +161,8 @@ export default function App() {
           <Stack.Screen name="AppDrawer" component={AppDrawer}/>
 		  <Stack.Screen name="StoreLoginScreen" component={StoreLoginScreen}/>
 		  <Stack.Screen name="StoreAppDrawer" component={StoreAppDrawer}/>
+		  <Stack.Screen name="OwnerLoginScreen" component={OwnerLoginScreen}/>
+		  <Stack.Screen name="OwnerAppDrawer" component={OwnerAppDrawer}/>
           <Stack.Screen
             name="ResetPasswordScreen"
             component={ResetPasswordScreen}
@@ -148,6 +189,16 @@ function StoreAppDrawer({navigation}) {
   return (
       <Drawer.Navigator initialRouteName="StoreHomeScreen">
         <Drawer.Screen name="Home" component={StoreHomeScreen} />
+        <Drawer.Screen name="Favourites" component={FavouriteScreen} />
+        {/* <Drawer.Screen name="Logout" component={() } /> */}
+      </Drawer.Navigator>
+  )
+}
+
+function OwnerAppDrawer({navigation}) {
+  return (
+      <Drawer.Navigator initialRouteName="OwnerHomeScreen">
+        <Drawer.Screen name="Home" component={OwnerHomeScreen} />
         <Drawer.Screen name="Favourites" component={FavouriteScreen} />
         {/* <Drawer.Screen name="Logout" component={() } /> */}
       </Drawer.Navigator>

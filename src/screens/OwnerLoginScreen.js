@@ -13,7 +13,7 @@ import { passwordValidator } from '../helpers/passwordValidator'
 import SelectDropdown from 'react-native-select-dropdown'
 
 
-export default function StoreLoginScreen({ navigation }) {
+export default function OwnerLoginScreen({ navigation }) {
   const [email, setEmail] = useState({ value: '', error: '' })
   const [password, setPassword] = useState({ value: '', error: '' })
   
@@ -27,7 +27,7 @@ export default function StoreLoginScreen({ navigation }) {
     }
     navigation.reset({
       index: 0,
-      routes: [{ name: 'StoreAppDrawer' }],
+      routes: [{ name: 'OwnerAppDrawer' }],
     })
   }
 
@@ -35,7 +35,7 @@ export default function StoreLoginScreen({ navigation }) {
     <Background>
       <BackButton goBack={navigation.goBack} />
       <Logo /> 
-      <Header>Cashier Login.</Header>
+      <Header>Owner Login.</Header>
       <TextInput
         label="Email"
         returnKeyType="next"
@@ -67,12 +67,7 @@ export default function StoreLoginScreen({ navigation }) {
       <Button mode="contained" onPress={onLoginPressed}>
         Login
       </Button>
-      <View style={styles.row}>
-        <Text>Login as owner? </Text>
-        <TouchableOpacity onPress={() => navigation.replace('OwnerLoginScreen')}>
-          <Text style={styles.link}>Login here</Text>
-        </TouchableOpacity>
-      </View>
+      
     </Background>
   )
 }
