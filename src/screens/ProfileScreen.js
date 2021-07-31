@@ -5,16 +5,22 @@ import Header from '../components/Header'
 import Paragraph from '../components/Paragraph'
 import Button from '../components/Button'
 import { Text } from 'react-native-paper'
-import { View,StyleSheet,ScrollView,TouchableOpacity,Modal,Alert,Pressable } from 'react-native';
+import { View,StyleSheet,ScrollView,TouchableOpacity,Modal,Alert,Pressable, TextInput } from 'react-native';
 import { SafeAreaView } from 'react-native';
 import MyVouchersScrollView from '../components/MyVouchersScrollView.js';
 import MyLoyaltyScrollView from '../components/MyLoyaltyScrollView.js';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default function ProfileScreen({navigation}) {
+	
+   const user = {'name': 'Ben', 'id': 1, 'email': 'hugga@gmail.com', 'password': '******'}
+	
    const [value, setValue] = useState()
    const [modalVisible, setModalVisible] = useState(false);
    const [actionTriggered, setActionTriggered] = useState('');
+   
+   const [text, onChangeText] = React.useState('');
+   const [number, onChangeNumber] = React.useState(null);
  
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -58,14 +64,35 @@ export default function ProfileScreen({navigation}) {
 							  <View style={styles.modalcontainer}>
 							  <View style={styles.modalcard}>
 							  <Text style={{fontSize: 20, padding: 5}}>Profile Details</Text>
+							  <Text style={styles.modalContent}>Email</Text>
+							  <TextInput
+								style={styles.input}
+								onChangeText={onChangeText}
+								value={user.email}
+								editable={false}
+							  />
+							  <Text style={styles.modalContent}>Password</Text>
+							  <TextInput
+								style={styles.input}
+								onChangeText={onChangeText}
+								value={user.password}
+								editable={false}
+							  />
 							  <Pressable
 								  style={[styles.button, styles.buttonClose]}
 								  onPress={() => {
-									  Alert.alert("I am an alert!");
-									  setModalVisible(!modalVisible)
+									  setActionTriggered('ACTION_3');
 								  }}
 							  >
 								  <Text style={styles.textStyle}>Manage Profile Details</Text>
+							  </Pressable>
+							  <Pressable
+								  style={[styles.button, styles.buttonClose]}
+								  onPress={() => {
+									  setModalVisible(!modalVisible)
+								  }}
+							  >
+								  <Text style={styles.textStyle}>Close</Text>
 							  </Pressable>
 							  </View>
 							  </View>:
@@ -84,17 +111,51 @@ export default function ProfileScreen({navigation}) {
 							  >
 								  <Text style={styles.textStyle}>Yes</Text>
 							  </Pressable>
-							  <Text style={{fontSize: 10, padding: 5, color: 'white'}}>Are you sure you want to log out?</Text>
 							  <Pressable
 								  style={[styles.button, styles.buttonClose]}
 								  onPress={() => {
-									  Alert.alert("I am an alert!");
 									  setModalVisible(!modalVisible)
 								  }}
 							  >
 								  <Text style={styles.textStyle}>No</Text>
 							  </Pressable>
 							  
+							  </View>
+							  </View>:
+			actionTriggered === 'ACTION_3' ?
+							  <View style={styles.modalcontainer}>
+							  <View style={styles.modalcard}>
+							  <Text style={{fontSize: 20, padding: 5}}>Profile Details</Text>
+							  <Text style={styles.modalContent}>Email</Text>
+							  <TextInput
+								style={styles.input}
+								onChangeText={onChangeText}
+								value={user.email}
+							  />
+							  <Text style={styles.modalContent}>Password</Text>
+							  <TextInput
+								style={styles.input}
+								onChangeText={onChangeText}
+								value={user.password}
+							  />
+							  
+							  <Pressable
+								  style={[styles.button, styles.buttonClose]}
+								  onPress={() => {
+									  Alert.alert("Profile changes saved!");
+									  setModalVisible(!modalVisible);
+								  }}
+							  >
+								  <Text style={styles.textStyle}>Save Profile Details</Text>
+							  </Pressable>
+							  <Pressable
+								  style={[styles.button, styles.buttonClose]}
+								  onPress={() => {
+									  setModalVisible(!modalVisible)
+								  }}
+							  >
+								  <Text style={styles.textStyle}>Close</Text>
+							  </Pressable>
 							  </View>
 							  </View>:
 			null}
@@ -104,6 +165,7 @@ export default function ProfileScreen({navigation}) {
      </SafeAreaView>
   )
 }
+
 const styles = StyleSheet.create({
 	headerView:{
 		backgroundColor: '#414757',
@@ -140,10 +202,21 @@ const styles = StyleSheet.create({
 	button: {
     alignItems: 'center',
     backgroundColor: '#560CCE',
-    padding: 10
+    padding: 10,
+	marginTop: 10,
     },
 	buttonClose: {
 	  backgroundColor: "#560CCE",
+    },
+	modalContent: {
+		fontSize: 15,
+		padding: 5
+	},
+	input: {
+    height: 40,
+    marginLeft:4,
+    borderWidth: 1,
+    padding: 10,
     },
 });
   
