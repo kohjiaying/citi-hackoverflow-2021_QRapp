@@ -15,6 +15,8 @@ import {
   OwnerLoginScreen,
   OwnerManageCashierScreen,
   OwnerManageVoucherScreen,
+  MyVoucherScreen,
+  StoreQRScanScreen,
 } from './src/screens'
 import { theme } from './src/core/theme';
 import { Provider } from 'react-native-paper';
@@ -42,13 +44,13 @@ function HomeScreen({navigation}) {
         : 'ios-add-outline';
       } else if (route.name === 'Brands') {
         iconName = focused
-        ? 'menu'
-        : 'menu-outline';
+        ? 'list'
+        : 'list-outline';
       }
-	  else if (route.name === 'Cart') {
+	  else if (route.name === 'My Vouchers') {
         iconName = focused
-        ? 'ios-cart'
-        : 'ios-cart-outline';
+        ? 'gift'
+        : 'gift-outline';
       }
       else if (route.name === 'Profile') {
         iconName = focused
@@ -65,7 +67,7 @@ return <Ionicons name={iconName} size={size} color={color}/>;
     >
         <Tab.Screen name="Explore" component={MainScreen} />
         <Tab.Screen name="Brands"  children={() => <QueueScreen navigation={navigation} />} />
-		<Tab.Screen name="Cart"  children={() => <CartScreen navigation={navigation} />} />
+		<Tab.Screen name="My Vouchers"  children={() => <MyVoucherScreen navigation={navigation} />} />
         <Tab.Screen name="Profile" children={() => <ProfileScreen navigation={navigation} />} >
         </Tab.Screen>
     </Tab.Navigator>
@@ -163,6 +165,8 @@ export default function App() {
 		  <Stack.Screen name="StoreAppDrawer" component={StoreAppDrawer}/>
 		  <Stack.Screen name="OwnerLoginScreen" component={OwnerLoginScreen}/>
 		  <Stack.Screen name="OwnerAppDrawer" component={OwnerAppDrawer}/>
+		  <Stack.Screen name="CartScreen" component={CartScreen}/>
+		  <Stack.Screen name="StoreQRScanScreen" component={StoreQRScanScreen}/>
           <Stack.Screen
             name="ResetPasswordScreen"
             component={ResetPasswordScreen}

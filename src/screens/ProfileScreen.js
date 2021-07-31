@@ -7,7 +7,6 @@ import Button from '../components/Button'
 import { Text } from 'react-native-paper'
 import { View,StyleSheet,ScrollView,TouchableOpacity,Modal,Alert,Pressable, TextInput } from 'react-native';
 import { SafeAreaView } from 'react-native';
-import MyVouchersScrollView from '../components/MyVouchersScrollView.js';
 import MyLoyaltyScrollView from '../components/MyLoyaltyScrollView.js';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -27,9 +26,9 @@ export default function ProfileScreen({navigation}) {
         <View style={styles.headerView}>
             <Text style={styles.header} >My Account</Text>
         </View>
-		<ScrollView>
-		<MyVouchersScrollView />   
-		<MyLoyaltyScrollView />  
+		
+		  
+		  
 		<TouchableOpacity onPress={() => {
 						  setModalVisible(true);
 						  setActionTriggered('ACTION_1'); // HERE
@@ -38,6 +37,15 @@ export default function ProfileScreen({navigation}) {
 		<View style={{flexDirection: "row", borderColor:'black', borderWidth: 1, marginTop:20, margin:5}}>
 			<Icon name="user" size={20} color="black" style={{padding: 10}}/>
 			<Text style={{fontSize: 20, padding: 5, marginTop: 1}}>Profile Details</Text>
+		</View>
+		</TouchableOpacity>
+		
+		<TouchableOpacity onPress={() => {
+						  navigation.navigate('CartScreen')
+		}}>
+		<View style={{flexDirection: "row", borderColor:'black', borderWidth: 1, marginTop:10, margin:5}}>
+			<Icon name="cart-arrow-down" size={20} color="black" style={{padding: 10}}/>
+			<Text style={{fontSize: 20, padding: 5}}>My Cart</Text>
 		</View>
 		</TouchableOpacity>
 		
@@ -160,8 +168,8 @@ export default function ProfileScreen({navigation}) {
 							  </View>:
 			null}
 			</Modal>
-			
-		</ScrollView>
+		<MyLoyaltyScrollView />
+		
      </SafeAreaView>
   )
 }
