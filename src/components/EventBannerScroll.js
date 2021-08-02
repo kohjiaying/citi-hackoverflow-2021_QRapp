@@ -12,10 +12,10 @@ const ITEM_WIDTH = Dimensions.get("window").width - (OFFSET * 2)
 const ITEM_HEIGHT = 200
 
 const cards = [
-  { title: "Movie 1", posterUrl: require("../assets/images/tenent.jpg") },
-  { title: "Movie 2", posterUrl: require("../assets/images/tenent.jpg") },
-  { title: "Movie 3", posterUrl: require("../assets/images/tenent.jpg") },
-  { title: "Movie 4", posterUrl: require("../assets/images/tenent.jpg") },
+  { title: "Movie 1", posterUrl: require("../assets/images/exampleSaleBanner.jpg") },
+  { title: "Movie 2", posterUrl: require("../assets/images/exampleSaleBanner.jpg") },
+  { title: "Movie 3", posterUrl: require("../assets/images/exampleSaleBanner.jpg") },
+  { title: "Movie 4", posterUrl: require("../assets/images/exampleSaleBanner.jpg") },
 ]
 
 export default function EventBannerScroll() {
