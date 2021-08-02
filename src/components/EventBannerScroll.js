@@ -12,10 +12,10 @@ const ITEM_WIDTH = Dimensions.get("window").width - (OFFSET * 2)
 const ITEM_HEIGHT = 200
 
 const cards = [
-  { title: "Movie 1", posterUrl: require("../assets/images/tenent.jpg") },
-  { title: "Movie 2", posterUrl: require("../assets/images/tenent.jpg") },
-  { title: "Movie 3", posterUrl: require("../assets/images/tenent.jpg") },
-  { title: "Movie 4", posterUrl: require("../assets/images/tenent.jpg") },
+  { title: "Movie 1", posterUrl: require("../assets/images/exampleSaleBanner.jpg") },
+  { title: "Movie 2", posterUrl: require("../assets/images/exampleSaleBanner.jpg") },
+  { title: "Movie 3", posterUrl: require("../assets/images/exampleSaleBanner.jpg") },
+  { title: "Movie 4", posterUrl: require("../assets/images/exampleSaleBanner.jpg") },
 ]
 
 export default function EventBannerScroll() {
@@ -26,7 +26,7 @@ export default function EventBannerScroll() {
         horizontal={true}
         decelerationRate={"normal"}
         snapToInterval={ITEM_WIDTH}
-        style={{ marginTop: 40, paddingHorizontal: 0 }}
+        style={{ marginTop: 20, paddingHorizontal: 0 }}
         showsHorizontalScrollIndicator={false}
         bounces={false}
         disableIntervalMomentum
