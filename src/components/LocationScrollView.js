@@ -7,10 +7,9 @@ class LocationScrollView extends Component {
 		modalVisible: false,
       names: [
          {'name': 'Tampines', 'id': 1, posterUrl: require("../assets/images/tampines.png")},
-         {'name': 'Simei', 'id': 2},
-         {'name': 'asdwfd', 'id': 3},
-         {'name': 'Mary', 'id': 4},
-         {'name': 'Daniel', 'id': 5}
+         {'name': 'Simei', 'id': 2, posterUrl: require("../assets/images/Simei.png")},
+         {'name': 'Bedok', 'id': 3, posterUrl: require("../assets/images/bedok.png")},
+         {'name': 'Changi', 'id': 4, posterUrl: require("../assets/images/changi.png")}
       ],
 	  
 	  selectedItem: {'name': 'Tampines', 'id': 1},
@@ -40,7 +39,7 @@ class LocationScrollView extends Component {
                     		<Image 
 								style = {styles.logo}
 								source={item.posterUrl}/>
-							<Text>{item.name}</Text>
+							<Text style={styles.headline}>{item.name}</Text>
 							
                 		</TouchableOpacity>
                   ))
@@ -135,7 +134,17 @@ const styles = StyleSheet.create ({
     height: 20,
   },
   logo: {
-    width: 100,
-    height: 100,
+    width: 150,
+    height: 150,
+	margin: 2,
+	borderColor: '#414757',
+    borderWidth: 1
+  },
+   headline: {
+    textAlign: 'center',
+    fontWeight: 'bold',
+    fontSize: 18,
+    marginTop: 0
   }
+  
 })
