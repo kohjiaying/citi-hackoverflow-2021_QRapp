@@ -17,6 +17,7 @@ import {
   OwnerManageVoucherScreen,
   MyVoucherScreen,
   StoreQRScanScreen,
+  PointScreen
 } from './src/screens'
 import { theme } from './src/core/theme';
 import { Provider } from 'react-native-paper';
@@ -167,6 +168,7 @@ export default function App() {
 		  <Stack.Screen name="OwnerAppDrawer" component={OwnerAppDrawer}/>
 		  <Stack.Screen name="CartScreen" component={CartScreen}/>
 		  <Stack.Screen name="StoreQRScanScreen" component={StoreQRScanScreen}/>
+		  <Stack.Screen name="PointScreen" component={PointScreen}/>
           <Stack.Screen
             name="ResetPasswordScreen"
             component={ResetPasswordScreen}
