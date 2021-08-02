@@ -24,7 +24,7 @@ export default function MainScreen({ navigation }) {
 		}}>
 		<View style={{flexDirection: "row", borderColor:'black', borderWidth: 1, marginTop:10, margin:5}}>
 			<Icon name="qrcode" size={30} color="black" style={{padding: 10, marginTop:5}}/>
-			<Text style={{fontSize: 20, padding: 5}}>Scan store's QR Code to explore vouchers</Text>
+			<Text style={{fontSize: 18, padding: 5, marginTop: 12}}>Scan store's QR Code to explore vouchers</Text>
 		</View>
 		</TouchableOpacity>
 		<ScrollView>
@@ -38,6 +38,6 @@ export default function MainScreen({ navigation }) {
  
 const styles = StyleSheet.create({
     container: {
-      marginTop: 30
+      marginTop: 40,
     },
   })
