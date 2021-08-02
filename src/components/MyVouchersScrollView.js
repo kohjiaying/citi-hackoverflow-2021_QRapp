@@ -95,7 +95,7 @@ const styles = StyleSheet.create ({
     },
 	mainContainer : {
 		marginTop: 10,
-		marginBottom: 90
+		marginBottom: 100
 	}, 
 	header: {
 		fontSize: 20
@@ -112,7 +112,7 @@ const styles = StyleSheet.create ({
       backgroundColor: '#560CCE',
 	  alignItems: 'center',
       justifyContent: 'center',
-	  width: 188,
+	  width: 200,
       height: 250,
    },
    modalcontainer: {

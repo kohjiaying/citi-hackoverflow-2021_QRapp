@@ -25,7 +25,7 @@ export default function MyVoucherScreen({navigation}) {
 const styles = StyleSheet.create({
     headerView:{
 		backgroundColor: '#414757',
-		marginTop: 30,
+		marginTop: 40,
 		alignItems: 'center',
         justifyContent: 'center',
 	    padding: 15
