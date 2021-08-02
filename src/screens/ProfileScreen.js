@@ -50,6 +50,15 @@ export default function ProfileScreen({navigation}) {
 		</TouchableOpacity>
 		
 		<TouchableOpacity onPress={() => {
+						  navigation.navigate('PointScreen')
+		}}>
+		<View style={{flexDirection: "row", borderColor:'black', borderWidth: 1, marginTop:10, margin:5}}>
+			<Icon name="cart-arrow-down" size={20} color="black" style={{padding: 10}}/>
+			<Text style={{fontSize: 20, padding: 5}}>My Loyalty Points</Text>
+		</View>
+		</TouchableOpacity>
+		
+		<TouchableOpacity onPress={() => {
 						  setModalVisible(true);
 						  setActionTriggered('ACTION_2'); // HERE
 		}}>
@@ -168,7 +177,6 @@ export default function ProfileScreen({navigation}) {
 							  </View>:
 			null}
 			</Modal>
-		<MyLoyaltyScrollView />
 		
      </SafeAreaView>
   )
