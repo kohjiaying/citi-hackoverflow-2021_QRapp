@@ -18,7 +18,7 @@ class MainHeaderScrollView extends Component {
 		user: {'email': 'janedoe@gmail.com' , 'name': 'Jane Doe', 'userid': '8731'},
 		isLoading: true,
 		storeDatabase: null,
-      	selectedItem: {'voucherName': '', 'voucherDesc': '', 'voucherPrice': '', 'voucherid': '', 'voucherImage': ''},
+      	selectedItem: {'voucherName': '', 'voucherDesc': '', 'voucherPrice': '', 'voucherid': '', 'voucherImage': '', 'storeid': ''},
 	    tempStr: 'dummy1'
    }
 
@@ -29,17 +29,41 @@ class MainHeaderScrollView extends Component {
     	this.setState({selectedItem: newItem});
   }
   
+  makeid() {
+    var result           = '';
+    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var charactersLength = characters.length;
+    for ( var i = 0; i < 10; i++ ) {
+      result += characters.charAt(Math.floor(Math.random() * 
+   charactersLength));
+   }
+   return result.toString();
+}
+
+  
+  setcartitemid(selectedItem, user){
+	const str1 = user.userid;
+	const str2 = selectedItem.storeid;
+	const str3 = selectedItem.voucherid;
+	const str4 = this.makeid();
+	const combi = str1 + str2 + str3 + str4;
+	this.setState({tempStr: combi});
+  }
+  
   handleAddToCart() {
 	  firebase.firestore()
-	  .collection('userVoucher')
-	  .add({
+	  .collection('cart')
+	  .doc(this.state.tempStr)
+	  .set({
+		  cartitemid: this.state.tempStr,
 		  userid: this.state.user.userid,
 		  voucherid: this.state.selectedItem.voucherid,
 		  storeid: this.state.selectedItem.storeid
 	  }).catch(err => console.error(err))
   }
 	  
-  onPressButton() {
+  onPressButton(selectedItem, user) {
+	  this.setcartitemid(selectedItem, user)
 	  this.handleAddToCart()
       alert('Added to cart!')
   }
@@ -64,11 +88,12 @@ class MainHeaderScrollView extends Component {
 							onPress={() => {
                     			this.setModalVisible(true);
 			              		this.setSelectedItem(item); 
+								this.setcartitemid(item, this.state.user)
                   }}>
 							<Image 
 								style = {styles.featuredLogo}
 								source={item.voucherImage}/>
-                    		<Text style={styles.headline}>{item.voucherName}</Text>
+                    		<Text>{item.voucherName}</Text>
                 		</TouchableOpacity>
 					)}
 				keyExtractor={item => item.voucherid}/>
@@ -82,25 +107,30 @@ class MainHeaderScrollView extends Component {
 					      }}>
 			          	<View style={styles.modalcontainer}>
 						<View style={styles.modalcard}>
-						<Text style={styles.modalheadline}>{this.state.selectedItem.voucherName}</Text>
+						<Text style={{fontSize: 20, padding: 5}}>{this.state.selectedItem.voucherName}</Text>
 						<Image 
-								style = {styles.modalimg}
+								style = {styles.featuredLogo}
 								source={this.state.selectedItem.voucherImage}/>
-                		<Text style={styles.price}>{this.state.selectedItem.voucherPrice}</Text>
-                		<Text style={styles.modaltext}>{this.state.selectedItem.voucherDesc}</Text>
+                		<Text style={{fontSize: 15, padding: 5}}>{this.state.selectedItem.voucherPrice}</Text>
+                		<Text style={{fontSize: 12, padding: 5}}>{this.state.selectedItem.voucherDesc}</Text>
                 		<Text style={styles.space}></Text>
-                		<TouchableOpacity onPress={this.onPressButton}>
+                		<TouchableOpacity onPress={() => {
+                    			this.onPressButton(this.state.selectedItem, this.state.user);
+								this.setModalVisible(!this.state.modalVisible);
+						}}>
                   			<View style={styles.button}>
                     			<Text style={styles.buttonText}>Add to cart</Text>
                   			</View>
                 		</TouchableOpacity>
-						<TouchableOpacity
-							style={styles.buttonClose}
+                  		<Text style={styles.space}></Text>
+						<Pressable
+							style={[styles.button, styles.buttonClose]}
 							onPress={() => {
 								this.setModalVisible(!this.state.modalVisible);
-							}}>
-							<Text style={styles.buttonTextClose}>Close</Text>
-						</TouchableOpacity>
+							}}
+						>
+							<Text style={styles.textStyle}>Close</Text>
+						</Pressable>
 						</View>
 			          	</View>
 					</Modal>
@@ -116,24 +146,16 @@ const styles = StyleSheet.create ({
 		marginTop: 10
 	}, 
 	header: {
-		fontSize: 20,
-		fontWeight: 'bold'
+		fontSize: 20
 	},
     item: {
-      	borderColor: '#414757',
-      	borderWidth: 0,
-      	borderRadius: 5,
-      	margin: 3,
-     	backgroundColor: 'white',
-     	alignItems: 'center'
-   	},
-   	headline: {
-   		fontSize: 18,
-   		maxWidth: 290,
-   		fontWeight: 'bold',
-   		textAlign: 'center'
-   	},
-   	modalcontainer: {
+      padding: 5,
+	  width: 300,
+      height: 200,
+	  alignItems: 'center',
+	  
+   },
+   modalcontainer: {
 		alignItems: 'center',
         justifyContent: 'center',
 		flex: 1 
@@ -144,7 +166,7 @@ const styles = StyleSheet.create ({
 		borderRadius: 0,
 		padding: 10,
 		width: 350,
-		height: 450,
+		height: 500,
 		shadowColor: "#000",
 		shadowOffset: {
 		width: 100,
@@ -156,66 +178,27 @@ const styles = StyleSheet.create ({
 		alignItems: 'center',
 	},
 	button: {
-    	alignItems: 'center',
-    	backgroundColor: '#560CCE',
-    	padding: 10,
-	  	margin: 5,
-	  	borderRadius: 5
+    alignItems: 'center',
+    backgroundColor: '#560CCE',
+    padding: 10,
+	  width: '100%'
     },
 	buttonClose: {
-	  	alignItems: 'center',
-    	backgroundColor: 'white',
-    	borderColor: '#560CCE',
-    	padding: 10,
-	  	width: '100%',
-	  	margin: 5,
-	  	borderWidth: 2,
-	  	borderRadius: 5
+	  backgroundColor: "#560CCE",
     },
-    buttonTextClose:{
-    	textAlign: 'center',
-    	color: '#560CCE',
-    	fontWeight: 'bold'
-    },
-  	buttonText: {
-    	textAlign: 'center',
-    	padding: 10,
-    	color: 'white',
-    	fontWeight: 'bold'
-  	},
-  	space: {
-    	width: 20,
-    	height: 20,
-  	},
-  	featuredLogo: {
-   		width: 290,
-    	height: 160,
-		borderColor: '#414757',
-    	borderWidth: 1,
-    	borderRadius: 5
-  	},
-  	modalimg: {
-  		width: '100%',
-  		height: 160,
-  		borderWidth: 0
-  	},
-   	modalheadline: {
-    	textAlign: 'center',
-    	fontWeight: 'bold',
-    	fontSize: 18,
-    	padding: 5,
-    	marginTop: 0
-  	},
-  	modaltext: {
-  		textAlign: 'center',
-    	fontSize: 13,
-    	padding: 5
-  	},
-  	price:{
-  		textAlign: 'center',
-  		fontWeight: 'bold',
-  		fontSize: 15,
-  		padding: 5,
-  		color: 'green'
-  	}
+  buttonText: {
+    textAlign: 'center',
+    padding: 20,
+    color: 'white'
+  },
+  space: {
+    width: 20,
+    height: 20,
+  },
+  featuredLogo: {
+    width: 290,
+    height: 160,
+	borderColor: '#414757',
+    borderWidth: 1
+  },
 })

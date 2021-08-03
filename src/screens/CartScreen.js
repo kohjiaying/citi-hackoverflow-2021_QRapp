@@ -8,6 +8,7 @@ import { Text } from 'react-native-paper'
 import { View,StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import CartScrollView from '../components/CartScrollView.js'
 
 
 export default function CartScreen({navigation}) {
@@ -18,12 +19,7 @@ export default function CartScreen({navigation}) {
 			<Icon name="close" size={20} color="white" style={{padding: 10, right:10, position: 'absolute'}} onPress={() => navigation.goBack()}/>
         </View>
         <View style={styles.container}>
-            <Text> Cart Screen</Text>
-            <Text> Cart Screen</Text>
-            <Text> Cart Screen</Text>
-            <Text> Cart Screen</Text>
-            <Text> Cart Screen</Text>
-            <Text> Cart Screen</Text>
+            <CartScrollView/>
         </View>
      </SafeAreaView>
   )
@@ -34,7 +30,7 @@ export default function CartScreen({navigation}) {
 const styles = StyleSheet.create({
 	headerView:{
 		backgroundColor: '#414757',
-		marginTop: 30,
+		marginTop: 40,
 	    padding: 15,
 		flexDirection: "row",
 		alignItems: 'center',
