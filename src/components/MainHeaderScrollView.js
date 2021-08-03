@@ -18,7 +18,7 @@ class MainHeaderScrollView extends Component {
 		user: {'email': 'janedoe@gmail.com' , 'name': 'Jane Doe', 'userid': '8731'},
 		isLoading: true,
 		storeDatabase: null,
-      	selectedItem: {'voucherName': '', 'voucherDesc': '', 'voucherPrice': '', 'voucherid': '', 'voucherImage': ''},
+      	selectedItem: {'voucherName': '', 'voucherDesc': '', 'voucherPrice': '', 'voucherid': '', 'voucherImage': '', 'storeid': ''},
 	    tempStr: 'dummy1'
    }
 
@@ -29,17 +29,41 @@ class MainHeaderScrollView extends Component {
     	this.setState({selectedItem: newItem});
   }
   
+  makeid() {
+    var result           = '';
+    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var charactersLength = characters.length;
+    for ( var i = 0; i < 10; i++ ) {
+      result += characters.charAt(Math.floor(Math.random() * 
+   charactersLength));
+   }
+   return result.toString();
+}
+
+  
+  setcartitemid(selectedItem, user){
+	const str1 = user.userid;
+	const str2 = selectedItem.storeid;
+	const str3 = selectedItem.voucherid;
+	const str4 = this.makeid();
+	const combi = str1 + str2 + str3 + str4;
+	this.setState({tempStr: combi});
+  }
+  
   handleAddToCart() {
 	  firebase.firestore()
-	  .collection('userVoucher')
-	  .add({
+	  .collection('cart')
+	  .doc(this.state.tempStr)
+	  .set({
+		  cartitemid: this.state.tempStr,
 		  userid: this.state.user.userid,
 		  voucherid: this.state.selectedItem.voucherid,
 		  storeid: this.state.selectedItem.storeid
 	  }).catch(err => console.error(err))
   }
 	  
-  onPressButton() {
+  onPressButton(selectedItem, user) {
+	  this.setcartitemid(selectedItem, user)
 	  this.handleAddToCart()
       alert('Added to cart!')
   }
@@ -64,6 +88,7 @@ class MainHeaderScrollView extends Component {
 							onPress={() => {
                     			this.setModalVisible(true);
 			              		this.setSelectedItem(item); 
+								this.setcartitemid(item, this.state.user)
                   }}>
 							<Image 
 								style = {styles.featuredLogo}
@@ -90,7 +115,8 @@ class MainHeaderScrollView extends Component {
                 		<Text style={{fontSize: 12, padding: 5}}>{this.state.selectedItem.voucherDesc}</Text>
                 		<Text style={styles.space}></Text>
                 		<TouchableOpacity onPress={() => {
-                    			this.onPressButton();
+                    			this.onPressButton(this.state.selectedItem, this.state.user);
+								this.setModalVisible(!this.state.modalVisible);
 						}}>
                   			<View style={styles.button}>
                     			<Text style={styles.buttonText}>Add to cart</Text>

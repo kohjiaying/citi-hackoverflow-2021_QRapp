@@ -6810,6 +6810,11 @@
   dependencies:
     "object-visit" "^1.0.0"
 
+"Math@^0.0.1-security":
+  "integrity" "sha1-BN38UmIU84ZmFOtw2eWInnDQ9Bk="
+  "resolved" "https://registry.npmjs.org/Math/-/Math-0.0.1-security.tgz"
+  "version" "0.0.1-security"
+
 "md5-file@^3.2.3":
   "integrity" "sha512-3Tkp1piAHaworfcCgH0jKbTvj1jWWFgbvh2cXaNCgHwyTCBxxvD1Y04rmfpvdPm1P4oXMOpm6+2H7sr7v9v8Fw=="
   "resolved" "https://registry.npmjs.org/md5-file/-/md5-file-3.2.3.tgz"
