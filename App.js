@@ -28,6 +28,7 @@ import { NavigationContainer ,DrawerActions } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { createStackNavigator} from '@react-navigation/stack';
 import { Ionicons } from '@expo/vector-icons';
+import firebase from './database/firebaseDB.js'
 
 const Tab = createBottomTabNavigator();
 const Drawer = createDrawerNavigator();
