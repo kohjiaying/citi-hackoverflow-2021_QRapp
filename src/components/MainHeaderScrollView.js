@@ -68,7 +68,7 @@ class MainHeaderScrollView extends Component {
 							<Image 
 								style = {styles.featuredLogo}
 								source={item.voucherImage}/>
-                    		<Text>{item.voucherName}</Text>
+                    		<Text style={styles.headline}>{item.voucherName}</Text>
                 		</TouchableOpacity>
 					)}
 				keyExtractor={item => item.voucherid}/>
@@ -82,29 +82,25 @@ class MainHeaderScrollView extends Component {
 					      }}>
 			          	<View style={styles.modalcontainer}>
 						<View style={styles.modalcard}>
-						<Text style={{fontSize: 20, padding: 5}}>{this.state.selectedItem.voucherName}</Text>
+						<Text style={styles.modalheadline}>{this.state.selectedItem.voucherName}</Text>
 						<Image 
-								style = {styles.featuredLogo}
+								style = {styles.modalimg}
 								source={this.state.selectedItem.voucherImage}/>
-                		<Text style={{fontSize: 15, padding: 5}}>{this.state.selectedItem.voucherPrice}</Text>
-                		<Text style={{fontSize: 12, padding: 5}}>{this.state.selectedItem.voucherDesc}</Text>
+                		<Text style={styles.price}>{this.state.selectedItem.voucherPrice}</Text>
+                		<Text style={styles.modaltext}>{this.state.selectedItem.voucherDesc}</Text>
                 		<Text style={styles.space}></Text>
-                		<TouchableOpacity onPress={() => {
-                    			this.onPressButton();
-						}}>
+                		<TouchableOpacity onPress={this.onPressButton}>
                   			<View style={styles.button}>
                     			<Text style={styles.buttonText}>Add to cart</Text>
                   			</View>
                 		</TouchableOpacity>
-                  		<Text style={styles.space}></Text>
-						<Pressable
-							style={[styles.button, styles.buttonClose]}
+						<TouchableOpacity
+							style={styles.buttonClose}
 							onPress={() => {
 								this.setModalVisible(!this.state.modalVisible);
-							}}
-						>
-							<Text style={styles.textStyle}>Close</Text>
-						</Pressable>
+							}}>
+							<Text style={styles.buttonTextClose}>Close</Text>
+						</TouchableOpacity>
 						</View>
 			          	</View>
 					</Modal>
@@ -120,16 +116,24 @@ const styles = StyleSheet.create ({
 		marginTop: 10
 	}, 
 	header: {
-		fontSize: 20
+		fontSize: 20,
+		fontWeight: 'bold'
 	},
     item: {
-      padding: 5,
-	  width: 300,
-      height: 200,
-	  alignItems: 'center',
-	  
-   },
-   modalcontainer: {
+      	borderColor: '#414757',
+      	borderWidth: 0,
+      	borderRadius: 5,
+      	margin: 3,
+     	backgroundColor: 'white',
+     	alignItems: 'center'
+   	},
+   	headline: {
+   		fontSize: 18,
+   		maxWidth: 290,
+   		fontWeight: 'bold',
+   		textAlign: 'center'
+   	},
+   	modalcontainer: {
 		alignItems: 'center',
         justifyContent: 'center',
 		flex: 1 
@@ -140,7 +144,7 @@ const styles = StyleSheet.create ({
 		borderRadius: 0,
 		padding: 10,
 		width: 350,
-		height: 500,
+		height: 450,
 		shadowColor: "#000",
 		shadowOffset: {
 		width: 100,
@@ -152,27 +156,66 @@ const styles = StyleSheet.create ({
 		alignItems: 'center',
 	},
 	button: {
-    alignItems: 'center',
-    backgroundColor: '#560CCE',
-    padding: 10,
-	  width: '100%'
+    	alignItems: 'center',
+    	backgroundColor: '#560CCE',
+    	padding: 10,
+	  	margin: 5,
+	  	borderRadius: 5
     },
 	buttonClose: {
-	  backgroundColor: "#560CCE",
+	  	alignItems: 'center',
+    	backgroundColor: 'white',
+    	borderColor: '#560CCE',
+    	padding: 10,
+	  	width: '100%',
+	  	margin: 5,
+	  	borderWidth: 2,
+	  	borderRadius: 5
     },
-  buttonText: {
-    textAlign: 'center',
-    padding: 20,
-    color: 'white'
-  },
-  space: {
-    width: 20,
-    height: 20,
-  },
-  featuredLogo: {
-    width: 290,
-    height: 160,
-	borderColor: '#414757',
-    borderWidth: 1
-  },
+    buttonTextClose:{
+    	textAlign: 'center',
+    	color: '#560CCE',
+    	fontWeight: 'bold'
+    },
+  	buttonText: {
+    	textAlign: 'center',
+    	padding: 10,
+    	color: 'white',
+    	fontWeight: 'bold'
+  	},
+  	space: {
+    	width: 20,
+    	height: 20,
+  	},
+  	featuredLogo: {
+   		width: 290,
+    	height: 160,
+		borderColor: '#414757',
+    	borderWidth: 1,
+    	borderRadius: 5
+  	},
+  	modalimg: {
+  		width: '100%',
+  		height: 160,
+  		borderWidth: 0
+  	},
+   	modalheadline: {
+    	textAlign: 'center',
+    	fontWeight: 'bold',
+    	fontSize: 18,
+    	padding: 5,
+    	marginTop: 0
+  	},
+  	modaltext: {
+  		textAlign: 'center',
+    	fontSize: 13,
+    	padding: 5
+  	},
+  	price:{
+  		textAlign: 'center',
+  		fontWeight: 'bold',
+  		fontSize: 15,
+  		padding: 5,
+  		color: 'green'
+  	}
 })
