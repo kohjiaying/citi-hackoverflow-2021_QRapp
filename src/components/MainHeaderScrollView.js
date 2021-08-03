@@ -53,7 +53,7 @@ class MainHeaderScrollView extends Component {
   
 
   render() {
-	    const { isLoading, users } = this.state
+	    const { isLoading, users, storeDatabase} = this.state
 		
 		while (isLoading) {
 		 this.getStoreDatabase()
@@ -65,13 +65,13 @@ class MainHeaderScrollView extends Component {
 		    		<Text style = {styles.header}> Featured Deals Of The Day </Text>
 				<FlatList
 				    horizontal={true}
-					data={this.state.stores}
+					data={this.state.storeDatabase}
 					renderItem={({item}) => (
 						<TouchableOpacity key = {item.voucherid} style = {styles.item} 
 							onPress={() => {
                     			this.setModalVisible(true);
 			              		this.setSelectedItem(item); 
-								console.log(JSON.stringify(this.state.storeDatabase))
+								console.log(JSON.stringify(storeDatabase))
                   }}>
                     		<Text>{item.voucherName}</Text>
                 		</TouchableOpacity>
