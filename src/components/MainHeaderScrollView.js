@@ -16,16 +16,9 @@ class MainHeaderScrollView extends Component {
 	state = {
 		modalVisible: false,
 		user: {'email': 'janedoe@gmail.com' , 'name': 'Jane Doe', 'userid': '8731'},
-		stores: [
-			{'voucherName': 'Starbucks', 'location': 'place1', 'info': '50% off', 'voucherid': '7133', 'storeid': '4009'},
-         	{'voucherName': 'KFC', 'location': 'place2', 'info': '$5 off', 'voucherid': 2},
-         	{'voucherName': 'LIHO', 'location': 'place3', 'info': '$10 off selected items', 'voucherid': 3},
-         	{'voucherName': 'Burger King', 'location': 'place4', 'info': 'Buy 1 Get 1 Free', 'voucherid': 4},
-         	{'voucherName': 'KOI', 'location': 'place5', 'info': '20% off', 'voucherid': 5}
-      	],
 		isLoading: true,
 		storeDatabase: null,
-      	selectedItem: {'voucherName': 'KOI', 'location': 'place5', 'info': '20% off', 'voucherid': 5},
+      	selectedItem: {'voucherName': '', 'voucherDesc': '', 'voucherPrice': '', 'voucherid': '', 'voucherImage': ''},
 	    tempStr: 'dummy1'
    }
 
@@ -53,7 +46,7 @@ class MainHeaderScrollView extends Component {
   
 
   render() {
-	    const { isLoading, users } = this.state
+	    const { isLoading, storeDatabase} = this.state
 		
 		while (isLoading) {
 		 this.getStoreDatabase()
@@ -65,14 +58,16 @@ class MainHeaderScrollView extends Component {
 		    		<Text style = {styles.header}> Featured Deals Of The Day </Text>
 				<FlatList
 				    horizontal={true}
-					data={this.state.stores}
+					data={this.state.storeDatabase}
 					renderItem={({item}) => (
 						<TouchableOpacity key = {item.voucherid} style = {styles.item} 
 							onPress={() => {
                     			this.setModalVisible(true);
 			              		this.setSelectedItem(item); 
-								console.log(JSON.stringify(this.state.storeDatabase))
                   }}>
+							<Image 
+								style = {styles.featuredLogo}
+								source={item.voucherImage}/>
                     		<Text>{item.voucherName}</Text>
                 		</TouchableOpacity>
 					)}
@@ -88,8 +83,11 @@ class MainHeaderScrollView extends Component {
 			          	<View style={styles.modalcontainer}>
 						<View style={styles.modalcard}>
 						<Text style={{fontSize: 20, padding: 5}}>{this.state.selectedItem.voucherName}</Text>
-                		<Text style={{fontSize: 15, padding: 5}}>{this.state.selectedItem.location}</Text>
-                		<Text style={{fontSize: 12, padding: 5}}>{this.state.selectedItem.info}</Text>
+						<Image 
+								style = {styles.featuredLogo}
+								source={this.state.selectedItem.voucherImage}/>
+                		<Text style={{fontSize: 15, padding: 5}}>{this.state.selectedItem.voucherPrice}</Text>
+                		<Text style={{fontSize: 12, padding: 5}}>{this.state.selectedItem.voucherDesc}</Text>
                 		<Text style={styles.space}></Text>
                 		<TouchableOpacity onPress={() => {
                     			this.onPressButton();
@@ -125,11 +123,11 @@ const styles = StyleSheet.create ({
 		fontSize: 20
 	},
     item: {
-      padding: 100,
-      margin: 2,
-      borderColor: '#414757',
-      borderWidth: 1,
-      backgroundColor: '#560CCE',
+      padding: 5,
+	  width: 300,
+      height: 200,
+	  alignItems: 'center',
+	  
    },
    modalcontainer: {
 		alignItems: 'center',
@@ -170,5 +168,11 @@ const styles = StyleSheet.create ({
   space: {
     width: 20,
     height: 20,
-  }
+  },
+  featuredLogo: {
+    width: 290,
+    height: 160,
+	borderColor: '#414757',
+    borderWidth: 1
+  },
 })
