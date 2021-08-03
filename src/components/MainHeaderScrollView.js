@@ -55,7 +55,7 @@ class MainHeaderScrollView extends Component {
 	  .collection('cart')
 	  .doc(this.state.tempStr)
 	  .set({
-		  cartitemid: this.state.tempStr,
+		  itemid: this.state.tempStr,
 		  userid: this.state.user.userid,
 		  voucherid: this.state.selectedItem.voucherid,
 		  storeid: this.state.selectedItem.storeid
