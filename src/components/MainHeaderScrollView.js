@@ -4,22 +4,18 @@ import firebase from '../../database/firebaseDB.js'
 
 class MainHeaderScrollView extends Component {
 
-	getStoreDatabase() {
-		firebase.firestore().collection('vouchers').get()
-			.then(querySnapshot => {
-				const results = []
-				querySnapshot.docs.map(documentSnapshot => results.push(documentSnapshot.data()))
-				this.setState({ isLoading: false, storeDatabase: results })
-			})
-			.catch(err => console.error(err))
-	}
-
 	state = {
 		modalVisible: false,
 		user: { 'email': 'janedoe@gmail.com', 'name': 'Jane Doe', 'userid': '8731' },
-		isLoading: true,
-		storeDatabase: null,
-		selectedItem: { 'voucherName': '', 'voucherDesc': '', 'voucherPrice': '', 'voucherid': '', 'voucherImage': '', 'storeid': '' },
+		storeDatabase: [
+			{ link: require("../assets/images/mainHeaderScrollView/biryani.jpg"), voucherName: '1-For-1 Briyani Set', voucherDesc: 'Satiate your cravings for double the servings', voucherPrice: '600', voucherid: '1000', storeid: '1' },
+			{ link: require("../assets/images/mainHeaderScrollView/crab.jpg"), voucherName: '$200 Cash Voucher for Crabs and Seafood', voucherDesc: '$200 cash voucher for crabs and seafood when you dine in or take-away (Ala carte items only)', voucherPrice: '300', voucherid: '2000', storeid: '2' },
+			{ link: require("../assets/images/mainHeaderScrollView/eggtart.jpg"), voucherName: 'Box of Eight (8) Portuguese Egg Tart', voucherDesc: 'These special egg tarts consist of a creamy egg custard sitting on a crisp flaky crust, and caramelised on the top.', voucherPrice: '400', voucherid: '4000', storeid: '3' },
+			{ link: require("../assets/images/mainHeaderScrollView/pottery.jpg"), voucherName: '50-Minute Pottery Workshop ', voucherDesc: 'Clay making experience on a spinning wheel / wheel throwing.', voucherPrice: '1000', voucherid: '4500', storeid: '4' },
+			{ link: require("../assets/images/mainHeaderScrollView/subway.jpg"), voucherName: '$200 Cash Voucher for Crabs and Seafood', voucherDesc: '$200 cash voucher for crabs and seafood when you dine in or take-away (Ala carte items only)', voucherPrice: '300', voucherid: '7000', storeid: '1' },
+			{ link: require("../assets/images/mainHeaderScrollView/tart.jpg"), voucherName: '24 Pieces of Fruit / Blueberry Cheese / Eclairs Mini Tarts', voucherDesc: '24 pieces of mini tarts', voucherPrice: '150', voucherid: '1200', storeid: '2' }
+		],
+		selectedItem: { 'voucherName': '', 'voucherDesc': '', 'voucherPrice': '', 'voucherid': '', 'link': '', 'storeid': '' },
 		tempStr: 'dummy1'
 	}
 
@@ -29,15 +25,7 @@ class MainHeaderScrollView extends Component {
 	setSelectedItem(newItem) {
 		this.setState({ selectedItem: newItem });
 	}
-	/* use this to show the path
-		initialisePath = (item) =>
-			firebase.firestore().collection('vouchers').add({
-	
-				link: require("../assets/images/mainHeaderScrollView/pottery.jpg"),
-				//link: require("../assets/images/mainHeaderScrollView/crab.jpg")
-			}
-			)
-	/**/
+
 	makeid() {
 		var result = '';
 		var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -79,13 +67,6 @@ class MainHeaderScrollView extends Component {
 
 
 	render() {
-		const { isLoading, storeDatabase } = this.state
-
-		while (isLoading) {
-			this.getStoreDatabase()
-			//this.initialisePath();
-			return <ActivityIndicator />
-		}
 
 		return (
 			<View style={styles.mainContainer}>
@@ -102,7 +83,7 @@ class MainHeaderScrollView extends Component {
 							}}>
 							<Image
 								style={styles.featuredLogo}
-								source={item.voucherImage} />
+								source={item.link} />
 							<Text>{item.voucherName}</Text>
 						</TouchableOpacity>
 					)}
@@ -120,7 +101,7 @@ class MainHeaderScrollView extends Component {
 							<Text style={{ fontSize: 20, padding: 5 }}>{this.state.selectedItem.voucherName}</Text>
 							<Image
 								style={styles.featuredLogo}
-								source={this.state.selectedItem.voucherImage} />
+								source={this.state.selectedItem.link} />
 							<Text style={{ fontSize: 15, padding: 5 }}>{this.state.selectedItem.voucherPrice}</Text>
 							<Text style={{ fontSize: 12, padding: 5 }}>{this.state.selectedItem.voucherDesc}</Text>
 							<Text style={styles.space}></Text>

@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
 import { ImageBackground, FlatList, ActivityIndicator, Text, Image, View, StyleSheet, ScrollView, Dimensions, TouchableOpacity, Modal, Alert, Pressable } from 'react-native';
-import firebase from '../../database/firebaseDB'
+
 
 class LocationScrollView extends Component {
 
 	state = {
 		modalVisible: false,
-		stores: null,
+		stores: [
+			{region: "Bedok", link: require("../assets/images/bedok.png")},
+			{region: "Changi", link: require("../assets/images/changi.png")},
+			{region: "Simei", link: require("../assets/images/Simei.png")},
+			{region: "Tampines", link: require("../assets/images/tampines.png")},
+		],
 		isLoading: true,
 
 		selectedItem: { 'name': 'Tampines', 'id': 1 },
@@ -20,30 +25,9 @@ class LocationScrollView extends Component {
 		this.setState({ selectedItem: newItem });
 	}
 
-	/** use this to upload image path to database	
-	 * updatefirebase = (item) => 
-			firebase.firestore().collection('store').add({
-				name: item.name,
-				id: item.id,
-				posterUrl: item.posterUrl
-			}
-			)
-		*/
-
-	componentDidMount() {
-		firebase.firestore().collection('store').get().then(querySnapshot => {
-			const results = []
-			querySnapshot.docs.map(documentSnapshot => results.push(documentSnapshot.data()))
-			this.setState({ isLoading: false, stores: results })
-		}).catch(err => console.error(err))
-	}
-
 	render() {
+		const {stores} = this.state
 
-		const { isLoading, stores } = this.state
-
-		if (isLoading)
-			return <ActivityIndicator />
 		return (
 
 			<View style={styles.mainContainer}>
@@ -58,8 +42,8 @@ class LocationScrollView extends Component {
 								}}>
 								<Image
 									style={styles.img}
-									source={item.posterUrl} />
-								<Text style={styles.headline}>{item.name}</Text>
+									source={item.link} />
+								<Text style={styles.headline}>{item.region}</Text>
 
 							</TouchableOpacity>
 						))
@@ -74,7 +58,7 @@ class LocationScrollView extends Component {
 					}}>
 					<View style={styles.modalcontainer}>
 						<View style={styles.modalcard}>
-							<Text style={styles.modalheadline}>{this.state.selectedItem.name}</Text>
+							<Text style={styles.modalheadline}>{this.state.selectedItem.region}</Text>
 							<Text style={styles.space}></Text>
 							<Text style={styles.space}></Text>
 							<Pressable
