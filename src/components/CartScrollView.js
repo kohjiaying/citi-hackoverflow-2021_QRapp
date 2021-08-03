@@ -18,7 +18,7 @@ class CartScrollView extends Component {
 		.then(querySnapshot=> {
 			const results = []
 			querySnapshot.docs.map(documentSnapshot=> results.push(documentSnapshot.data()))
-			this.setState({isLoading: false, cartDatabase: results})})
+			this.setState({isLoading: false, voucherDatabase: results})})
 		.catch(err => console.error(err))
 	}
    
@@ -28,9 +28,21 @@ class CartScrollView extends Component {
 		isLoading: true,
 		cartDatabase: null,
       	selectedItem: {'userid': '', 'storeid': '', 'voucherid': '', 'itemid': ''},
-	    tempStr: 'dummy1'
+	    tempStr: 'dummy1',
+		voucherDatabase: null,
+		totalIncome: 0
    }
-
+	
+	getTotal(){
+		firebase.firestore().collection('cart').where('userid', '==', this.state.user.userid).get()
+		.then(function(querySnapshot) {
+		 querySnapshot.forEach(function(doc) {
+			totalIncome += doc.data().price;
+			this.setState({totalIncome: totalIncome})
+		 })
+	    })
+	}
+	
   setSelectedItem(newItem) {
     	this.setState({selectedItem: newItem});
   }
@@ -39,6 +51,23 @@ class CartScrollView extends Component {
     this.setState({modalVisible: visible});
   }
   
+  handlePurhased(cartDatabase) {
+	  batch = firebase.firestore().batch()
+	  for (let i = 0; i < cartDatabase.length; i++) {
+		  console.log(cartDatabase[i].itemid)
+		  let docName = cartDatabase[i].itemid
+		  docRef = firebase.firestore().collection("purchased").doc(docName); 
+	      batch.set(docRef, cartDatabase[i]);
+		  firebase.firestore().collection("cart").doc(docName).delete(); 
+	  }
+	  batch.commit()
+	  alert('Thank you for your purchase!')
+	  this.setState({cartDatabase: null});
+	  this.setState({cartDatabase: null});
+	  this.setState({isLoading: true});
+	  this.setState({isLoading: true});
+	  this.forceUpdate()
+  }
   
   handleDeletefromCart(item) {
 	  firebase.firestore()
@@ -50,7 +79,6 @@ class CartScrollView extends Component {
   onPressButton(item) {
 	  this.handleDeletefromCart(item)
       alert('Removed from cart!')
-	  
 	  this.setState({isLoading: true});
 	  this.setState({isLoading: true});
 	  this.forceUpdate()
@@ -73,7 +101,7 @@ class CartScrollView extends Component {
 						<View key = {item.itemid} style = {styles.item} 
 							>
                     		<Text>{item.itemid}</Text>
-							<Pressable
+							<TouchableOpacity
 								  style={[styles.button, styles.buttonClose]}
 								  onPress={() => {
 									  this.setSelectedItem(item);
@@ -82,10 +110,25 @@ class CartScrollView extends Component {
 								  }}
 							  >
 								  <Text style={styles.textStyle}>Remove from cart</Text>
-							  </Pressable>
+							  </TouchableOpacity>
                 		</View>
 					)}
-				keyExtractor={item => item.itemid}/>
+				keyExtractor={item => item.itemid}>
+				</FlatList>
+				<View style={styles.purchase}>
+				<Text style={styles.textStyle}>Total Amount Payable:</Text>
+				<TouchableOpacity
+					  style={[styles.purchasebutton, styles.purchasebuttonClose]}
+					  onPress={() => {
+						  this.handlePurhased(this.state.cartDatabase);
+						  this.setModalVisible(!this.state.modalVisible);
+					  }}
+				  >
+					  <Text style={styles.textStyle}>Check Out Cart.</Text>
+				 </TouchableOpacity>
+				
+				</View>
+				
 				
 				<Modal
 			  animationType="slide"
@@ -97,7 +140,7 @@ class CartScrollView extends Component {
 			    <View style={styles.modalcontainer}>
 							  <View style={styles.modalcard}>
 							  <Text style={{fontSize: 20, padding: 5}}>Are you sure you want to remove voucher from cart?</Text>
-							  <Pressable
+							  <TouchableOpacity
 								  style={[styles.button, styles.buttonClose]}
 								  onPress={() => {
 									  this.onPressButton(this.state.selectedItem);
@@ -105,15 +148,15 @@ class CartScrollView extends Component {
 								  }}
 							  >
 								  <Text style={styles.textStyle}>Yes</Text>
-							  </Pressable>
-							  <Pressable
+							  </TouchableOpacity>
+							  <TouchableOpacity
 								  style={[styles.button, styles.buttonClose]}
 								  onPress={() => {
 									  this.setModalVisible(!this.state.modalVisible);
 								  }}
 							  >
 								  <Text style={styles.textStyle}>No</Text>
-							  </Pressable>
+							  </TouchableOpacity>
 							  </View>
 			    </View>
 			</Modal>
@@ -167,12 +210,28 @@ const styles = StyleSheet.create ({
 	},
 	button: {
     alignItems: 'center',
-    backgroundColor: '#560CCE',
     padding: 10,
 	  width: '100%',
-	  marginBottom: 10
+	  marginBottom: 10,
+	  borderColor: '#414757',
+      borderWidth: 1
     },
 	buttonClose: {
+    },
+  buttonText: {
+    textAlign: 'center',
+    padding: 20,
+    color: 'white'
+  },
+  purchasebutton: {
+      alignItems: 'center',
+      backgroundColor: '#560CCE',
+      padding: 10,
+	  width: '100%',
+	  marginTop: 10
+	  
+    },
+	purchasebuttonClose: {
 	  backgroundColor: "#560CCE",
     },
   buttonText: {
@@ -184,9 +243,10 @@ const styles = StyleSheet.create ({
     width: 20,
     height: 20,
   },
-  featuredLogo: {
-    width: 290,
-    height: 160,
+  purchase: {
+	alignItems: 'center',
+    justifyContent: 'center',
+    height: 100,
 	borderColor: '#414757',
     borderWidth: 1
   },

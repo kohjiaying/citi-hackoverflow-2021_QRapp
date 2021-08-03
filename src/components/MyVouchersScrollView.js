@@ -1,11 +1,22 @@
 import React, { useState, useEffect, Component } from 'react';
 import { Text, Image, View, StyleSheet, ScrollView, Dimensions, TouchableOpacity,Modal,Alert,Pressable } from 'react-native';
 import QRCode from 'react-native-qrcode-svg';
+import firebase from '../../database/firebaseDB.js'
    
 class MyVouchersScrollView extends Component {
 	
+	getCartDatabase(){
+		firebase.firestore().collection('purchased').where('userid', '==', this.state.user.userid).get()
+		.then(querySnapshot=> {
+			const results = []
+			querySnapshot.docs.map(documentSnapshot=> results.push(documentSnapshot.data()))
+			this.setState({isLoading: false, cartDatabase: results})})
+		.catch(err => console.error(err))
+	}
+	
    state = {
 	  modalVisible: false,
+	  user: {'email': 'janedoe@gmail.com' , 'name': 'Jane Doe', 'userid': '8731'},
       names: [
          {'name': 'Voucher Name', 'id': 'wjhe34', 'voucherid': 'a', 'storeid': 'a10'},
          {'name': 'Susan', 'id': 2, 'voucherid': 'b', 'storeid': 'b20'},
