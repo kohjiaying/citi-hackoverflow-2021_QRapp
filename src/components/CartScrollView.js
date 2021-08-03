@@ -27,7 +27,7 @@ class CartScrollView extends Component {
 		user: {'email': 'janedoe@gmail.com' , 'name': 'Jane Doe', 'userid': '8731'},
 		isLoading: true,
 		cartDatabase: null,
-      	selectedItem: {'userid': '', 'storeid': '', 'voucherid': '', 'cartitemid': ''},
+      	selectedItem: {'userid': '', 'storeid': '', 'voucherid': '', 'itemid': ''},
 	    tempStr: 'dummy1'
    }
 
@@ -39,10 +39,11 @@ class CartScrollView extends Component {
     this.setState({modalVisible: visible});
   }
   
+  
   handleDeletefromCart(item) {
 	  firebase.firestore()
 	  .collection('cart')
-	  .doc(item.cartitemid)
+	  .doc(item.itemid)
 	  .delete().catch(err => console.error(err))
   }
 	  
@@ -50,6 +51,7 @@ class CartScrollView extends Component {
 	  this.handleDeletefromCart(item)
       alert('Removed from cart!')
 	  
+	  this.setState({isLoading: true});
 	  this.setState({isLoading: true});
 	  this.forceUpdate()
   }
@@ -68,9 +70,9 @@ class CartScrollView extends Component {
 				<FlatList
 					data={this.state.cartDatabase}
 					renderItem={({item}) => (
-						<View key = {item.cartitemid} style = {styles.item} 
+						<View key = {item.itemid} style = {styles.item} 
 							>
-                    		<Text>{item.cartitemid}</Text>
+                    		<Text>{item.itemid}</Text>
 							<Pressable
 								  style={[styles.button, styles.buttonClose]}
 								  onPress={() => {
@@ -83,7 +85,7 @@ class CartScrollView extends Component {
 							  </Pressable>
                 		</View>
 					)}
-				keyExtractor={item => item.cartitemid}/>
+				keyExtractor={item => item.itemid}/>
 				
 				<Modal
 			  animationType="slide"

@@ -21,6 +21,7 @@ export default function CartScreen({navigation}) {
         <View style={styles.container}>
             <CartScrollView/>
         </View>
+		
      </SafeAreaView>
   )
 }
