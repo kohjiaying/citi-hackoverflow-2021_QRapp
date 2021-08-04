@@ -215,7 +215,7 @@ const styles = StyleSheet.create ({
 	},
 	headerView:{
 		backgroundColor: '#414757',
-		marginTop: 40,
+		marginTop: 30,
 		alignItems: 'center',
         justifyContent: 'center',
 	    padding: 15
