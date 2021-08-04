@@ -53,7 +53,7 @@ export default function ProfileScreen({navigation}) {
 						  navigation.navigate('PointScreen')
 		}}>
 		<View style={{flexDirection: "row", borderColor:'black', borderWidth: 1, marginTop:10, margin:5}}>
-			<Icon name="cart-arrow-down" size={20} color="black" style={{padding: 10}}/>
+			<Icon name="star" size={20} color="black" style={{padding: 10}}/>
 			<Text style={{fontSize: 20, padding: 5}}>My Loyalty Points</Text>
 		</View>
 		</TouchableOpacity>
