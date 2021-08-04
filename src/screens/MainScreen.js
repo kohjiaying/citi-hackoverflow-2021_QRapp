@@ -20,7 +20,6 @@ export default function MainScreen({ navigation }) {
 		<View style={styles.container}>
 			<SearchBarExample />
         </View>
-		
 		<TouchableOpacity onPress={() => {
 						  navigation.navigate('StoreQRScanScreen')
 		}}>
