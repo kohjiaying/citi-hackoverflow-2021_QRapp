@@ -8,14 +8,14 @@ class MainHeaderScrollView extends Component {
 		modalVisible: false,
 		user: { 'email': 'janedoe@gmail.com', 'name': 'Jane Doe', 'userid': '8731' },
 		storeDatabase: [
-			{ link: require("../assets/images/mainHeaderScrollView/biryani.jpg"), voucherName: '1-For-1 Briyani Set', voucherDesc: 'Satiate your cravings for double the servings', voucherPrice: '600', voucherid: '1000', storeid: '1' },
-			{ link: require("../assets/images/mainHeaderScrollView/crab.jpg"), voucherName: '$200 Cash Voucher for Crabs and Seafood', voucherDesc: '$200 cash voucher for crabs and seafood when you dine in or take-away (Ala carte items only)', voucherPrice: '300', voucherid: '2000', storeid: '2' },
-			{ link: require("../assets/images/mainHeaderScrollView/eggtart.jpg"), voucherName: 'Box of Eight (8) Portuguese Egg Tart', voucherDesc: 'These special egg tarts consist of a creamy egg custard sitting on a crisp flaky crust, and caramelised on the top.', voucherPrice: '400', voucherid: '4000', storeid: '3' },
-			{ link: require("../assets/images/mainHeaderScrollView/pottery.jpg"), voucherName: '50-Minute Pottery Workshop ', voucherDesc: 'Clay making experience on a spinning wheel / wheel throwing.', voucherPrice: '1000', voucherid: '4500', storeid: '4' },
-			{ link: require("../assets/images/mainHeaderScrollView/subway.jpg"), voucherName: '$200 Cash Voucher for Crabs and Seafood', voucherDesc: '$200 cash voucher for crabs and seafood when you dine in or take-away (Ala carte items only)', voucherPrice: '300', voucherid: '7000', storeid: '5' },
-			{ link: require("../assets/images/mainHeaderScrollView/tart.jpg"), voucherName: '24 Pieces of Fruit / Blueberry Cheese / Eclairs Mini Tarts', voucherDesc: '24 pieces of mini tarts', voucherPrice: '150', voucherid: '1200', storeid: '6' }
+			{ link: require("../assets/images/mainHeaderScrollView/biryani.jpg"), voucherName: '1-For-1 Briyani Set', voucherDesc: 'Satiate your cravings for double the servings', voucherPrice: '600', voucherid: '1000', storeid: '1', storename: 'Dhaba 1376' },
+			{ link: require("../assets/images/mainHeaderScrollView/crab.jpg"), voucherName: '$200 Cash Voucher for Crabs and Seafood', voucherDesc: '$200 cash voucher for crabs and seafood when you dine in or take-away (Ala carte items only)', voucherPrice: '300', voucherid: '2000', storeid: '2', storename: 'Ponggol Seafood' },
+			{ link: require("../assets/images/mainHeaderScrollView/eggtart.jpg"), voucherName: 'Box of Eight (8) Portuguese Egg Tart', voucherDesc: 'These special egg tarts consist of a creamy egg custard sitting on a crisp flaky crust, and caramelised on the top.', voucherPrice: '400', voucherid: '4000', storeid: '3', storename: 'Qinde Egg Tarts & Pastries' },
+			{ link: require("../assets/images/mainHeaderScrollView/pottery.jpg"), voucherName: '50-Minute Pottery Workshop ', voucherDesc: 'Clay making experience on a spinning wheel / wheel throwing.', voucherPrice: '1000', voucherid: '4500', storeid: '4', storename: 'Clayable Pottery' },
+			{ link: require("../assets/images/mainHeaderScrollView/subway.jpg"), voucherName: '$10 Cash Voucher for Sandwiches and More', voucherDesc: '$10 cash voucher for all menu items, including subs, wraps, flatbreads, and salads.', voucherPrice: '9', voucherid: '7000', storeid: '5', storename: 'Subway' },
+			{ link: require("../assets/images/mainHeaderScrollView/tart.jpg"), voucherName: '24 Pieces of Fruit / Blueberry Cheese / Eclairs Mini Tarts', voucherDesc: '24 pieces of mini tarts', voucherPrice: '150', voucherid: '1200', storeid: '6', storename: 'Cake in Action' }
 		],
-		selectedItem: { 'voucherName': '', 'voucherDesc': '', 'voucherPrice': '', 'voucherid': '', 'link': '', 'storeid': '' },
+		selectedItem: { 'voucherName': '', 'voucherDesc': '', 'voucherPrice': '', 'voucherid': '', 'link': '', 'storeid': '', 'storename': '' },
 		tempStr: 'dummy1'
 	}
 
@@ -84,7 +84,7 @@ class MainHeaderScrollView extends Component {
 							<Image
 								style={styles.featuredLogo}
 								source={item.link} />
-							<Text>{item.voucherName}</Text>
+							<Text style={styles.headline}>{item.voucherName}</Text>
 						</TouchableOpacity>
 					)}
 					keyExtractor={item => item.voucherid} />
@@ -98,12 +98,13 @@ class MainHeaderScrollView extends Component {
 					}}>
 					<View style={styles.modalcontainer}>
 						<View style={styles.modalcard}>
-							<Text style={{ fontSize: 20, padding: 5 }}>{this.state.selectedItem.voucherName}</Text>
+							<Text style={styles.modalheadline}>{this.state.selectedItem.storename}</Text>
 							<Image
-								style={styles.featuredLogo}
+								style={styles.modalimg}
 								source={this.state.selectedItem.link} />
-							<Text style={{ fontSize: 15, padding: 5 }}>{this.state.selectedItem.voucherPrice}</Text>
-							<Text style={{ fontSize: 12, padding: 5 }}>{this.state.selectedItem.voucherDesc}</Text>
+							<Text style={styles.modalsubtitle}>{this.state.selectedItem.voucherName}</Text>
+							<Text style={styles.price}>{'$' + this.state.selectedItem.voucherPrice}</Text>
+							<Text style={styles.modaltext}>{this.state.selectedItem.voucherDesc}</Text>
 							<Text style={styles.space}></Text>
 							<TouchableOpacity onPress={() => {
 								this.onPressButton(this.state.selectedItem, this.state.user);
@@ -113,14 +114,13 @@ class MainHeaderScrollView extends Component {
 									<Text style={styles.buttonText}>Add to cart</Text>
 								</View>
 							</TouchableOpacity>
-							<Text style={styles.space}></Text>
 							<Pressable
-								style={[styles.button, styles.buttonClose]}
+								style={styles.buttonClose}
 								onPress={() => {
 									this.setModalVisible(!this.state.modalVisible);
 								}}
 							>
-								<Text style={styles.textStyle}>Close</Text>
+								<Text style={styles.buttonTextClose}>Close</Text>
 							</Pressable>
 						</View>
 					</View>
@@ -137,15 +137,24 @@ const styles = StyleSheet.create({
 		marginTop: 10
 	},
 	header: {
-		fontSize: 20
+		fontSize: 20,
+		fontWeight: 'bold'
 	},
 	item: {
-		padding: 5,
-		width: 300,
-		height: 200,
-		alignItems: 'center',
-
+		borderColor: '#414757',
+      	borderWidth: 0,
+      	borderRadius: 5,
+      	margin: 3,
+     	backgroundColor: '#560CCE',
+     	alignItems: 'center'
 	},
+	headline: {
+   		fontSize: 18,
+   		maxWidth: 290,
+   		fontWeight: 'bold',
+   		textAlign: 'center',
+   		color: 'white'
+   	},
 	modalcontainer: {
 		alignItems: 'center',
 		justifyContent: 'center',
@@ -169,27 +178,73 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 	},
 	button: {
-		alignItems: 'center',
-		backgroundColor: '#560CCE',
-		padding: 10,
-		width: '100%'
-	},
+    	alignItems: 'center',
+    	backgroundColor: '#560CCE',
+    	padding: 10,
+	  	margin: 5,
+	  	borderRadius: 5
+    },
 	buttonClose: {
-		backgroundColor: "#560CCE",
-	},
-	buttonText: {
-		textAlign: 'center',
-		padding: 20,
-		color: 'white'
-	},
+	  	alignItems: 'center',
+    	backgroundColor: 'white',
+    	borderColor: '#560CCE',
+    	padding: 10,
+	  	width: '100%',
+	  	margin: 5,
+	  	borderWidth: 2,
+	  	borderRadius: 5
+    },
+    buttonTextClose:{
+    	textAlign: 'center',
+    	color: '#560CCE',
+    	fontWeight: 'bold'
+    },
+  	buttonText: {
+    	textAlign: 'center',
+    	padding: 10,
+    	color: 'white',
+    	fontWeight: 'bold'
+  	},
 	space: {
 		width: 20,
 		height: 20,
 	},
 	featuredLogo: {
-		width: 290,
-		height: 160,
+   		width: 290,
+    	height: 160,
 		borderColor: '#414757',
-		borderWidth: 1
-	},
+    	borderWidth: 1,
+    	borderRadius: 5
+  	},
+  	modalimg: {
+  		width: '100%',
+  		height: 160,
+  		borderWidth: 0
+  	},
+   	modalheadline: {
+    	textAlign: 'center',
+    	fontWeight: 'bold',
+    	fontSize: 18,
+    	padding: 5,
+    	marginTop: 0
+  	},
+  	modalsubtitle: {
+  		textAlign: 'center',
+    	fontWeight: 'bold',
+    	fontSize: 15,
+    	padding: 5,
+    	marginTop: 0
+  	},
+  	modaltext: {
+  		textAlign: 'center',
+    	fontSize: 13,
+    	padding: 5
+  	},
+  	price:{
+  		textAlign: 'center',
+  		fontWeight: 'bold',
+  		fontSize: 15,
+  		padding: 5,
+  		color: 'green'
+  	}
 })

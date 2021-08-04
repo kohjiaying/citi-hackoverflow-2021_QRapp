@@ -6,9 +6,12 @@ class CategoryScrollView extends Component {
    state = {
       modalVisible: false,
       names: [
-         {'name': 'Food', 'id': 1, posterUrl: require("../assets/images/food_category.jpg")},
-         {'name': 'Drinks', 'id': 2, posterUrl: require("../assets/images/drinks_category.jpg")},
-         {'name': 'Fashion', 'id': 3, posterUrl: require("../assets/images/fashion_category.jpg")}
+         {'name': 'Food', 'id': 1, posterUrl: require("../assets/images/food_category.jpg"), voucherUrl: require("../assets/images/kfc.png"), 
+      voucherUrl2: require("../assets/images/giant.png"),voucherUrl3: require("../assets/images/popular.png")},
+         {'name': 'Drinks', 'id': 2, posterUrl: require("../assets/images/drinks_category.jpg"), voucherUrl: require("../assets/images/kfc.png"), 
+      voucherUrl2: require("../assets/images/giant.png"),voucherUrl3: require("../assets/images/popular.png")},
+         {'name': 'Fashion', 'id': 3, posterUrl: require("../assets/images/fashion_category.jpg"), voucherUrl: require("../assets/images/kfc.png"), 
+      voucherUrl2: require("../assets/images/giant.png"),voucherUrl3: require("../assets/images/popular.png")}
       ],
       selectedItem: {'name': 'Food', 'id': 1},
       tempStr: 'dummy1'
@@ -50,8 +53,33 @@ class CategoryScrollView extends Component {
                    }}>
                      <View style={styles.modalcontainer}>
                      <View style={styles.modalcard}>
-                     <Image style={styles.modalimg} source={this.state.selectedItem.posterUrl}/>
                      <Text style={styles.modalheadline}>{this.state.selectedItem.name}</Text>
+                     <ScrollView>
+							{
+								 <View key = {this.state.selectedItem.id} 
+										onPress={() => {
+											this.setModalVisible(true);
+							  }}>
+									<TouchableOpacity>
+										<Image 
+											style = {styles.innerlogo}
+											source={this.state.selectedItem.voucherUrl}/>
+										</TouchableOpacity>	
+
+									<TouchableOpacity>											
+										<Image 
+											style = {styles.innerlogo}
+											source={this.state.selectedItem.voucherUrl2}/>
+										</TouchableOpacity>
+
+									<TouchableOpacity>
+										<Image 
+											style = {styles.innerlogo}
+											source={this.state.selectedItem.voucherUrl3}/>
+										</TouchableOpacity>
+								</View>
+							}
+						</ScrollView>
                      <TouchableOpacity
                         style={styles.buttonClose}
                         onPress={() => {
@@ -82,12 +110,13 @@ const styles = StyleSheet.create ({
          borderWidth: 0,
          borderRadius: 3,
          margin: 3,
-        backgroundColor: 'white'
+        backgroundColor: '#560CCE'
       },
       headline: {
          fontSize: 18,
          fontWeight: 'bold',
-         textAlign: 'center'
+         textAlign: 'center',
+         color: 'white'
       },
       modalcontainer: {
       alignItems: 'center',
@@ -119,14 +148,14 @@ const styles = StyleSheet.create ({
         borderRadius: 5
     },
    buttonClose: {
-        alignItems: 'center',
-       backgroundColor: 'white',
-       borderColor: '#560CCE',
-       padding: 10,
-        width: '100%',
-        margin: 5,
-        borderWidth: 2,
-        borderRadius: 5
+      alignItems: 'center',
+      backgroundColor: 'white',
+      borderColor: '#560CCE',
+      padding: 10,
+      width: '100%',
+      margin: 5,
+      borderWidth: 2,
+      borderRadius: 5
     },
     buttonTextClose:{
        textAlign: 'center',
@@ -139,7 +168,10 @@ const styles = StyleSheet.create ({
        color: 'white',
        fontWeight: 'bold'
      },
-
+     space: {
+       width: 20,
+       height: 20,
+     },
      img: {
         width: 150,
         height: 150,
@@ -169,5 +201,12 @@ const styles = StyleSheet.create ({
         textAlign: 'center',
        fontSize: 13,
        padding: 5
-     }
+     },
+     innerlogo: {
+   		width: 300,
+    	height: 150,
+		margin: 2,
+		borderColor: '#414757',
+    	borderWidth: 1
+  }
 })
