@@ -2,6 +2,7 @@ import React, { useState, useEffect, Component } from 'react';
 import { Text, Image, View, StyleSheet, ScrollView, Dimensions, TouchableOpacity,Modal,Alert,Pressable } from 'react-native';
 import QRCode from 'react-native-qrcode-svg';
 import firebase from '../../database/firebaseDB.js'
+import Icon from 'react-native-vector-icons/FontAwesome';
    
 class MyVouchersScrollView extends Component {
 	
@@ -52,6 +53,13 @@ class MyVouchersScrollView extends Component {
 	const combi = selectedItem.itemid + expTime.toLocaleTimeString()
 	this.setState({tempStr: combi});
   }
+  
+  onPressButton() {
+      alert('Voucher screen refreshed!')
+	  this.setState({isLoading: true});
+	  this.setState({isLoading: true});
+	  this.forceUpdate()
+  }
 	
    render() {
 	  const { isLoading, purchaseDatabase} = this.state
@@ -66,6 +74,10 @@ class MyVouchersScrollView extends Component {
 		
       return (
          <View style={styles.mainContainer}>
+		    <View style={styles.headerView}>
+			<Text style={styles.header} >My Vouchers</Text>
+			<Icon name="refresh" size={20} color="white" style={{padding: 10, right:10, position: 'absolute'}} onPress={() => this.onPressButton()}/>
+		    </View>
             <ScrollView contentContainerStyle={styles.container}>
 				{
                   this.state.purchaseDatabase.map((item, index) => (
@@ -106,7 +118,7 @@ class MyVouchersScrollView extends Component {
 									value= {this.state.tempStr}
 									size={300}
 							  />
-							  <Text>This QRCode is only available for 5 minutes.</Text>
+							  <Text style={{marginTop: 10}}>This QRCode is only available for 5 minutes.</Text>
 							  <Text>Date this QRCode is generated: {currDate}</Text>
 							  <Text>Time this QRCode will expire: {expTime.toLocaleTimeString()}</Text>
 							  <Pressable
@@ -135,16 +147,13 @@ const styles = StyleSheet.create ({
 		marginTop: 10,
 		marginBottom: 100
 	}, 
-	header: {
-		fontSize: 20
-	},
 	itemName: {
-	  fontSize: 20,
+	  fontSize: 15,
 	  color: 'white',
 	  textDecorationLine: 'underline'
 	},
 	itemDesc: {
-	  fontSize: 15,
+	  fontSize: 12,
 	  color: 'white',
 	},
     item: {
@@ -181,6 +190,7 @@ const styles = StyleSheet.create ({
 		shadowRadius: 4,
 		elevation: 5,
 		alignItems: 'center',
+		
 	},
 	button: {
     alignItems: 'center',
@@ -202,5 +212,16 @@ const styles = StyleSheet.create ({
 		height: 90,
 		borderColor: '#414757',
 		borderWidth: 1,
+	},
+	headerView:{
+		backgroundColor: '#414757',
+		marginTop: 40,
+		alignItems: 'center',
+        justifyContent: 'center',
+	    padding: 15
+ 	},
+	header: {
+		fontSize: 20,
+		color: 'white'
 	},
 })

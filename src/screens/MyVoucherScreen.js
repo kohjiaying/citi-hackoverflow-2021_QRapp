@@ -12,9 +12,6 @@ import MyVouchersScrollView from '../components/MyVouchersScrollView.js';
 export default function MyVoucherScreen({navigation}) {
   return (
     <SafeAreaView style={{ flex: 1 }}>
-		<View style={styles.headerView}>
-			<Text style={styles.header} >My Vouchers</Text>
-		</View>
 		<MyVouchersScrollView /> 
      </SafeAreaView>
   )
