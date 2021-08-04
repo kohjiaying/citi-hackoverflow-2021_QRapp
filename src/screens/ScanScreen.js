@@ -4,11 +4,13 @@ import Header from '../components/Header'
 import Paragraph from '../components/Paragraph'
 import Button from '../components/Button'
 import { Text } from 'react-native-paper'
-import { SafeAreaView } from 'react-native';
+import { SafeAreaView, Alert } from 'react-native';
 
 import React, { useState, useEffect } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { BarCodeScanner } from 'expo-barcode-scanner';
+
+import firebase from '../../database/firebaseDB.js'
 
 export default function ScanScreen({navigation}) {
   const [hasPermission, setHasPermission] = useState(null);
@@ -23,7 +25,43 @@ export default function ScanScreen({navigation}) {
 
   const handleBarCodeScanned = ({ type, data }) => {
     setScanned(true);
-    alert(`Bar code with type ${type} and data ${data} has been scanned!`);
+    // alert(`Bar code with type ${type} and data ${data} has been scanned!`);
+	var scannedItemId = data.slice(0, -16)
+	var timeScanned = data.substr(data.length - 8)
+	var scannedDate = data.slice(0, -8)
+	scannedDate = scannedDate.substr(scannedDate.length - 8)
+	var scannedDateTime = new Date(Date.parse(scannedDate + " " + timeScanned))
+	var currTime = new Date()
+	if (scannedDateTime >= currTime){
+		firebase.firestore().collection("purchased").doc(scannedItemId).delete().then(() => {
+			Alert.alert(
+			  'Alert',
+			  'Voucher Redeemed',
+			  [
+				{text: 'Ok', onPress: () => setScanned(false)},
+			  ],
+			  {cancelable: false},
+			);
+		}).catch((error) => {
+			Alert.alert(
+			  'Alert',
+			  'Voucher not found. Check for voucher in Search.',
+			  [
+				{text: 'Ok', onPress: () => setScanned(false)},
+			  ],
+			  {cancelable: false},
+			);
+		})
+	} else{
+		Alert.alert(
+		  'Alert',
+		  'QRCode has expired. Please request for customer to regenerate voucher QRCode in the app.',
+		  [
+			{text: 'Ok', onPress: () => setScanned(false)},
+		  ],
+		  {cancelable: false},
+		);
+	}
   };
 
   if (hasPermission === null) {

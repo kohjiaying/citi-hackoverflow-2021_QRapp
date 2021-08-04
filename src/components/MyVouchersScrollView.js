@@ -49,8 +49,8 @@ class MyVouchersScrollView extends Component {
 	this.setState({selectedvoucherid: selectedItem.voucherid})
   }
   
-  setQRvalue(selectedItem, expTime){
-	const combi = selectedItem.itemid + expTime.toLocaleTimeString()
+  setQRvalue(selectedItem, expTime, currDate){
+	const combi = selectedItem.itemid + currDate + expTime.toLocaleTimeString()
 	this.setState({tempStr: combi});
   }
   
@@ -85,7 +85,7 @@ class MyVouchersScrollView extends Component {
 					   key = {item.itemid} 
 					   style = {styles.item} 
 					   onPress={() => {
-						this.setQRvalue(item, expTime);
+						this.setQRvalue(item, expTime, currDate);
 						this.setSelectedVoucherID(item);
 						this.setSelectedItem(item);
 						this.setModalVisible(true);
