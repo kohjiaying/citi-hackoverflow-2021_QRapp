@@ -1,22 +1,23 @@
 import React, { useState, useEffect, Component } from 'react';
 import { Text, Image, View, StyleSheet, ScrollView, Dimensions, TouchableOpacity,Modal,Alert,Pressable } from 'react-native';
 import QRCode from 'react-native-qrcode-svg';
+import firebase from '../../database/firebaseDB.js'
    
 class MyVouchersScrollView extends Component {
 	
+	getPurchasedDatabase(){
+		firebase.firestore().collection('purchased').where('userid', '==', this.state.user.userid).get()
+		.then(querySnapshot=> {
+			const results = []
+			querySnapshot.docs.map(documentSnapshot=> results.push(documentSnapshot.data()))
+			this.setState({isLoading: false, purchaseDatabase: results})})
+		.catch(err => console.error(err))
+	}
+	
    state = {
 	  modalVisible: false,
-      names: [
-         {'name': 'Voucher Name', 'id': 'wjhe34', 'voucherid': 'a', 'storeid': 'a10'},
-         {'name': 'Susan', 'id': 2, 'voucherid': 'b', 'storeid': 'b20'},
-         {'name': 'Robert', 'id': 3, 'voucherid': 'c', 'storeid': 'c30'},
-         {'name': 'Mary', 'id': 4, 'voucherid': 'd', 'storeid': 'd40'},
-         {'name': 'Daniel', 'id': 5, 'voucherid': 'e', 'storeid': 'e50'},
-		 {'name': 'Susan', 'id': 6, 'voucherid': 'b', 'storeid': 'b20'},
-         {'name': 'Robert', 'id': 7, 'voucherid': 'c', 'storeid': 'c30'},
-         {'name': 'Mary', 'id': 8, 'voucherid': 'd', 'storeid': 'd40'},
-         {'name': 'Daniel', 'id': 9, 'voucherid': 'e', 'storeid': 'e50'}
-      ],
+	  user: {'email': 'janedoe@gmail.com' , 'name': 'Jane Doe', 'userid': '8731'},
+	  purchaseDatabase: [],
 	  selectedItem: {'name': 'Daniel', 'id': 5},
 	  tempStr: 'dummy1'
    }
@@ -29,27 +30,29 @@ class MyVouchersScrollView extends Component {
   }
   
   setQRvalue(selectedItem){
-	const str1 = selectedItem.id;
-	const str2 = selectedItem.storeid;
-	const str3 = selectedItem.voucherid;
-	const combi = str1 + str2 + str3;
-	this.setState({tempStr: combi});
+	this.setState({tempStr: selectedItem.itemid});
   }
 	
    render() {
-	  
+	  const { isLoading, purchaseDatabase} = this.state
+		
+		while (isLoading || (this.state.purchaseDatabase.length == 0)) {
+		 this.getPurchasedDatabase()
+		 return <Text>You have no vouchers purchased.</Text>
+		}
+		
       return (
          <View style={styles.mainContainer}>
             <ScrollView contentContainerStyle={styles.container}>
 				{
-                  this.state.names.map((item, index) => (
-                     <TouchableOpacity key = {item.id} style = {styles.item} 
+                  this.state.purchaseDatabase.map((item, index) => (
+                     <TouchableOpacity key = {item.itemid} style = {styles.item} 
 					   onPress={() => {
 						this.setQRvalue(item);
 						this.setModalVisible(true);
 						this.setSelectedItem(item);
 					  }}>
-                        <Text style = {styles.itemcontent} >{item.name}</Text>
+                        <Text style = {styles.itemcontent} >{item.itemid}</Text>
                      </TouchableOpacity>
                   ))
                 }
@@ -63,7 +66,7 @@ class MyVouchersScrollView extends Component {
 					}}>
 			    <View style={styles.modalcontainer}>
 							  <View style={styles.modalcard}>
-							  <Text style={{fontSize: 20, padding: 5}}>{this.state.selectedItem.name}</Text>
+							  <Text style={{fontSize: 20, padding: 5}}>{this.state.selectedItem.itemid}</Text>
 							  <QRCode
 									value= {this.state.tempStr}
 									size={300}
@@ -89,8 +92,6 @@ export default MyVouchersScrollView
 
 const styles = StyleSheet.create ({
 	container: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
 	alignItems: 'center',
     },
 	mainContainer : {
@@ -112,8 +113,8 @@ const styles = StyleSheet.create ({
       backgroundColor: '#560CCE',
 	  alignItems: 'center',
       justifyContent: 'center',
-	  width: 200,
-      height: 250,
+	  width: 400,
+      height: 100,
    },
    modalcontainer: {
 		alignItems: 'center',
