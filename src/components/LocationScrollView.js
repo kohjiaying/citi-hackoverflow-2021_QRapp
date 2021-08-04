@@ -1,15 +1,23 @@
 import React, { Component } from 'react';
-import { Text, Image, View, StyleSheet, ScrollView, Dimensions, TouchableOpacity, Modal, Alert, Pressable } from 'react-native';
+import { Text, Image, View, StyleSheet, ScrollView, Dimensions, TouchableOpacity, Modal, Alert, Pressable, FlatList } from 'react-native';
 
 class LocationScrollView extends Component {
    
    state = {
 		modalVisible: false,
       names: [
-         {'name': 'Tampines', 'id': 1, posterUrl: require("../assets/images/tampines.png")},
-         {'name': 'Simei', 'id': 2, posterUrl: require("../assets/images/Simei.png")},
-         {'name': 'Bedok', 'id': 3, posterUrl: require("../assets/images/bedok.png")},
-         {'name': 'Changi', 'id': 4, posterUrl: require("../assets/images/changi.png")}
+         {'name': 'Tampines', 'id': 1, posterUrl: require("../assets/images/tampines.png"), voucherUrl: require("../assets/images/kfc.png"), 
+		 voucherUrl2: require("../assets/images/giant.png"),voucherUrl3: require("../assets/images/popular.png")},
+		 
+		 
+         {'name': 'Simei', 'id': 2, posterUrl: require("../assets/images/Simei.png"), voucherUrl: require("../assets/images/kfc.png"), 
+		 voucherUrl2: require("../assets/images/giant.png"),voucherUrl3: require("../assets/images/popular.png")},
+		 
+         {'name': 'Bedok', 'id': 3, posterUrl: require("../assets/images/bedok.png"), voucherUrl: require("../assets/images/kfc.png"), 
+		 voucherUrl2: require("../assets/images/giant.png"),voucherUrl3: require("../assets/images/popular.png")},
+		 
+         {'name': 'Changi', 'id': 4, posterUrl: require("../assets/images/changi.png"), voucherUrl: require("../assets/images/kfc.png"), 
+		 voucherUrl2: require("../assets/images/giant.png"),voucherUrl3: require("../assets/images/popular.png")}
       ],
 	  
 	  selectedItem: {'name': 'Tampines', 'id': 1},
@@ -54,8 +62,29 @@ class LocationScrollView extends Component {
 					      }}>
 			          	<View style={styles.modalcontainer}>
 						<View style={styles.modalcard}>
-						<Text style={{fontSize: 20, padding: 5}}>{this.state.selectedItem.name}</Text>
-                		<Text style={styles.space}></Text>
+						<Text style={{fontSize: 20, padding: 5, textAlign: 'center'}}>{this.state.selectedItem.name}</Text>
+						<ScrollView>
+							{
+							  
+								 <TouchableOpacity key = {this.state.selectedItem.id} 
+										onPress={() => {
+											this.setModalVisible(true);
+											this.setSelectedItem(this.state.selectedItem.item); 
+							  }}>
+										<Image 
+											style = {styles.innerlogo}
+											source={this.state.selectedItem.voucherUrl}/>
+										<Image 
+											style = {styles.innerlogo}
+											source={this.state.selectedItem.voucherUrl2}/>
+										<Image 
+											style = {styles.innerlogo}
+											source={this.state.selectedItem.voucherUrl3}/>
+										
+									</TouchableOpacity>
+							  
+							}
+						</ScrollView>
                   		<Text style={styles.space}></Text>
 						<Pressable
 							style={[styles.button, styles.buttonClose]}
@@ -89,10 +118,7 @@ const styles = StyleSheet.create ({
       borderWidth: 1,
       backgroundColor: '#560CCE',
    },
-   logo: {
-    width: 66,
-    height: 58,
-	},
+
 	modalcontainer: {
 		alignItems: 'center',
         justifyContent: 'center',
@@ -113,7 +139,8 @@ const styles = StyleSheet.create ({
 		shadowOpacity: 0.25,
 		shadowRadius: 4,
 		elevation: 5,
-		alignItems: 'center',
+		alignItems: 'center'
+
 	},
 	button: {
     alignItems: 'center',
@@ -145,6 +172,13 @@ const styles = StyleSheet.create ({
     fontWeight: 'bold',
     fontSize: 18,
     marginTop: 0
+  },
+  innerlogo: {
+    width: 300,
+    height: 150,
+	margin: 2,
+	borderColor: '#414757',
+    borderWidth: 1
   }
   
 })
