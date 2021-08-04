@@ -69,11 +69,11 @@ class MyVouchersScrollView extends Component {
 		
 		while (isLoading || (this.state.purchaseDatabase.length == 0)) {
 		 this.getPurchasedDatabase()
-		 return <View style={styles.noPurchase}><Text>You have no purchased voucher.</Text></View>
+		 return <View style={styles.noPurchase}><Text testID="empty">You have no purchased voucher.</Text></View>
 		}
 		
       return (
-         <View style={styles.mainContainer}>
+         <View style={styles.mainContainer} testID = "filled">
 		    <View style={styles.headerView}>
 			<Text style={styles.header} >My Vouchers</Text>
 			<Icon name="refresh" size={20} color="white" style={{padding: 10, right:10, position: 'absolute'}} onPress={() => this.onPressButton()}/>

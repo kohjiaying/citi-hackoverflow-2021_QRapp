@@ -5,7 +5,26 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "eject": "expo eject"
+    "eject": "expo eject",
+    "test": "jest"
+  },
+  "jest": {
+    "preset": "react-native",
+    "transformIgnorePatterns": [
+      "node_modules/(?!(jest-)?react-native|react-(native|universal|navigation)-(.*)|@react-native-community/(.*)|@react-navigation/(.*)|bs-platform|(@[a-zA-Z]+/)?(bs|reason|rescript)-(.*)+)"
+    ],
+    "automock": false,
+    "setupFiles": [
+      "./setupJest.js"
+    ],
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ]
   },
   "dependencies": {
     "@react-native-community/masked-view": "^0.1.10",
@@ -14,13 +33,14 @@
     "@react-navigation/drawer": "^5.12.5",
     "@react-navigation/native": "^5.8.10",
     "@react-navigation/stack": "^5.12.8",
+    "Math": "^0.0.1-security",
     "cocoapods": "^0.0.0",
     "expo": "^40.0.0",
     "expo-barcode-scanner": "^10.2.2",
     "expo-status-bar": "~1.0.3",
     "firebase": "^8.8.1",
     "jest": "^27.0.6",
-    "Math": "^0.0.1-security",
+    "jest-fetch-mock": "^3.0.3",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-40.0.1.tar.gz",
@@ -39,13 +59,15 @@
     "react-native-select-dropdown": "^1.0.9",
     "react-native-status-bar-height": "^2.6.0",
     "react-native-svg": "^12.1.1",
+    "react-native-testing-library": "^6.0.0",
     "react-native-vector-icons": "^8.1.0",
     "react-native-web": "~0.13.12",
     "react-navigation": "^4.4.4",
     "react-navigation-tabs": "^2.11.1"
   },
   "devDependencies": {
-    "@babel/core": "~7.9.0",
+    "@babel/core": "^7.9.6",
+    "@testing-library/react-native": "^7.2.0",
     "babel-eslint": "^10.1.0",
     "eslint": "^7.15.0",
     "eslint-config-airbnb": "^18.2.1",
