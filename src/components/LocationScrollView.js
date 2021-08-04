@@ -7,10 +7,17 @@ class LocationScrollView extends Component {
 	state = {
 		modalVisible: false,
 		stores: [
-			{region: "Bedok", link: require("../assets/images/bedok.png")},
-			{region: "Changi", link: require("../assets/images/changi.png")},
-			{region: "Simei", link: require("../assets/images/Simei.png")},
-			{region: "Tampines", link: require("../assets/images/tampines.png")},
+			{region: "Bedok", 'id' : 1,  link: require("../assets/images/bedok.png"), voucherUrl: require("../assets/images/kfc.png"), 
+			voucherUrl2: require("../assets/images/giant.png"),voucherUrl3: require("../assets/images/popular.png")},
+			
+			{region: "Changi", 'id' : 2, link: require("../assets/images/changi.png"), voucherUrl: require("../assets/images/kfc.png"), 
+			voucherUrl2: require("../assets/images/giant.png"),voucherUrl3: require("../assets/images/popular.png")},
+			
+			{region: "Simei", 'id' : 3, link: require("../assets/images/Simei.png"), voucherUrl: require("../assets/images/kfc.png"), 
+			voucherUrl2: require("../assets/images/giant.png"),voucherUrl3: require("../assets/images/popular.png")},
+			
+			{region: "Tampines", 'id' : 4, link: require("../assets/images/tampines.png"), voucherUrl: require("../assets/images/kfc.png"), 
+			voucherUrl2: require("../assets/images/giant.png"),voucherUrl3: require("../assets/images/popular.png")},
 		],
 		isLoading: true,
 
@@ -56,11 +63,40 @@ class LocationScrollView extends Component {
 					onRequestClose={() => {
 						this.setModalVisible(!this.state.modalVisible);
 					}}>
-					<View style={styles.modalcontainer}>
+			          	<View style={styles.modalcontainer}>
 						<View style={styles.modalcard}>
-							<Text style={styles.modalheadline}>{this.state.selectedItem.region}</Text>
-							<Text style={styles.space}></Text>
-							<Text style={styles.space}></Text>
+						<Text style={{fontSize: 20, padding: 5, textAlign: 'center'}}>{this.state.selectedItem.region}</Text>
+						<ScrollView>
+							{
+							  
+								 <View key = {this.state.selectedItem.id} 
+										onPress={() => {
+											this.setModalVisible(true);
+							  }}>
+							  
+									<TouchableOpacity>
+										<Image 
+											style = {styles.innerlogo}
+											source={this.state.selectedItem.voucherUrl}/>
+										</TouchableOpacity>	
+
+									<TouchableOpacity>											
+										<Image 
+											style = {styles.innerlogo}
+											source={this.state.selectedItem.voucherUrl2}/>
+										</TouchableOpacity>
+
+									<TouchableOpacity>
+										<Image 
+											style = {styles.innerlogo}
+											source={this.state.selectedItem.voucherUrl3}/>
+										</TouchableOpacity>
+										
+									</View>
+							  
+							}
+						</ScrollView>
+                  		<Text style={styles.space}></Text>
 							<Pressable
 								style={styles.buttonClose}
 								onPress={() => {
@@ -183,5 +219,19 @@ const styles = StyleSheet.create({
 		textAlign: 'center',
 		fontSize: 13,
 		padding: 5
-	}
+	},
+	
+	headline: {
+    textAlign: 'center',
+    fontWeight: 'bold',
+    fontSize: 18,
+    marginTop: 0
+  },
+  innerlogo: {
+    width: 300,
+    height: 150,
+	margin: 2,
+	borderColor: '#414757',
+    borderWidth: 1
+  }
 })
