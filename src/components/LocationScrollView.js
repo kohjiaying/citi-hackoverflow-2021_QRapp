@@ -65,7 +65,7 @@ class LocationScrollView extends Component {
 					}}>
 			          	<View style={styles.modalcontainer}>
 						<View style={styles.modalcard}>
-						<Text style={{fontSize: 20, padding: 5, textAlign: 'center'}}>{this.state.selectedItem.region}</Text>
+						<Text style={styles.modalheadline}>{this.state.selectedItem.region}</Text>
 						<ScrollView>
 							{
 							  
@@ -129,13 +129,14 @@ const styles = StyleSheet.create({
 		borderWidth: 0,
 		borderRadius: 3,
 		margin: 3,
-		backgroundColor: 'white'
+		backgroundColor: '#560CCE'
 	},
 	headline: {
-		fontSize: 18,
-		fontWeight: 'bold',
-		textAlign: 'center'
-	},
+   		fontSize: 18,
+   		fontWeight: 'bold',
+   		textAlign: 'center',
+   		color: 'white'
+   	},
 	modalcontainer: {
 		alignItems: 'center',
 		justifyContent: 'center',
@@ -220,18 +221,11 @@ const styles = StyleSheet.create({
 		fontSize: 13,
 		padding: 5
 	},
-	
-	headline: {
-    textAlign: 'center',
-    fontWeight: 'bold',
-    fontSize: 18,
-    marginTop: 0
-  },
-  innerlogo: {
-    width: 300,
-    height: 150,
-	margin: 2,
-	borderColor: '#414757',
-    borderWidth: 1
+  	innerlogo: {
+    	width: 300,
+    	height: 150,
+		margin: 2,
+		borderColor: '#414757',
+    	borderWidth: 1
   }
 })
