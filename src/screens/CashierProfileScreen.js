@@ -76,21 +76,21 @@ export default function CashierProfileScreen({navigation}) {
 								editable={false}
 							  />
 							  <Pressable
-								  style={[styles.button, styles.buttonClose]}
-								  onPress={() => {
-									  setActionTriggered('ACTION_3');
-								  }}
-							  >
-								  <Text style={styles.textStyle}>Manage Profile Details</Text>
-							  </Pressable>
+								style={styles.button}
+								onPress={() => {
+									setActionTriggered('ACTION_3');
+								}}
+							>
+								<Text style={styles.buttonText}>Manage Profile Details</Text>
+							</Pressable>
 							  <Pressable
-								  style={[styles.button, styles.buttonClose]}
-								  onPress={() => {
+								style={styles.buttonClose}
+								onPress={() => {
 									  setModalVisible(!modalVisible)
 								  }}
-							  >
-								  <Text style={styles.textStyle}>Close</Text>
-							  </Pressable>
+							>
+								<Text style={styles.buttonTextClose}>Close</Text>
+							</Pressable>
 							  </View>
 							  </View>:
 			actionTriggered === 'ACTION_2' ?
@@ -99,22 +99,22 @@ export default function CashierProfileScreen({navigation}) {
 							  <Text style={{fontSize: 20, padding: 5}}>Are you sure you want to log out?</Text>
 							  <Text style={{fontSize: 10, padding: 5, color: 'white'}}>Are you sure you want to log out?</Text>
 							  <Pressable
-								  style={[styles.button, styles.buttonClose]}
+								  style={styles.button}
 								  onPress={() => {
 									  navigation.navigate('StartScreen')
 									  setModalVisible(!modalVisible)
 									  
 								  }}
 							  >
-								  <Text style={styles.textStyle}>Yes</Text>
+								  <Text style={styles.buttonText}>Yes</Text>
 							  </Pressable>
 							  <Pressable
-								  style={[styles.button, styles.buttonClose]}
-								  onPress={() => {
+								style={styles.buttonClose}
+								onPress={() => {
 									  setModalVisible(!modalVisible)
 								  }}
-							  >
-								  <Text style={styles.textStyle}>No</Text>
+							>
+								  <Text style={styles.buttonTextClose}>No</Text>
 							  </Pressable>
 							  
 							  </View>
@@ -137,21 +137,21 @@ export default function CashierProfileScreen({navigation}) {
 							  />
 							  
 							  <Pressable
-								  style={[styles.button, styles.buttonClose]}
+								  style={styles.button}
 								  onPress={() => {
 									  Alert.alert("Profile changes saved!");
 									  setModalVisible(!modalVisible);
 								  }}
 							  >
-								  <Text style={styles.textStyle}>Save Profile Details</Text>
+								  <Text style={styles.buttonText}>Save Profile Details</Text>
 							  </Pressable>
 							  <Pressable
-								  style={[styles.button, styles.buttonClose]}
+								  style={styles.buttonClose}
 								  onPress={() => {
 									  setModalVisible(!modalVisible)
 								  }}
 							  >
-								  <Text style={styles.textStyle}>Close</Text>
+								  <Text style={styles.buttonTextClose}>Close</Text>
 							  </Pressable>
 							  </View>
 							  </View>:
@@ -198,22 +198,43 @@ const styles = StyleSheet.create({
 		elevation: 5
 	},
 	button: {
-    alignItems: 'center',
-    backgroundColor: '#560CCE',
-    padding: 10,
-	marginTop: 10,
+    	alignItems: 'center',
+    	backgroundColor: '#560CCE',
+    	padding: 5,
+	  	margin: 5,
+	  	borderRadius: 5,
+	  	width: '100%'
     },
 	buttonClose: {
-	  backgroundColor: "#560CCE",
+	  	alignItems: 'center',
+    	backgroundColor: 'white',
+    	borderColor: '#560CCE',
+    	padding: 10,
+	  	width: '100%',
+	  	margin: 5,
+	  	borderWidth: 2,
+	  	borderRadius: 5
     },
+    buttonTextClose:{
+    	textAlign: 'center',
+    	color: '#560CCE',
+    	fontWeight: 'bold'
+    },
+  	buttonText: {
+    	textAlign: 'center',
+    	padding: 10,
+    	color: 'white',
+    	fontWeight: 'bold'
+  	},
 	modalContent: {
 		fontSize: 15,
 		padding: 5
 	},
 	input: {
-    height: 40,
-    marginLeft:4,
-    borderWidth: 1,
-    padding: 10,
+    	height: 40,
+    	marginLeft:4,
+    	borderWidth: 1,
+    	padding: 10,
+    	width: '100%'
     },
 });

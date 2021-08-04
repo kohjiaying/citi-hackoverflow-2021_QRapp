@@ -122,13 +122,13 @@ class MyVouchersScrollView extends Component {
 							  <Text>Date this QRCode is generated: {currDate}</Text>
 							  <Text>Time this QRCode will expire: {expTime.toLocaleTimeString()}</Text>
 							  <Pressable
-								  style={[styles.button, styles.buttonClose]}
-								  onPress={() => {
-									  this.setModalVisible(!this.state.modalVisible);
-								  }}
-							  >
-								  <Text style={styles.textStyle}>Close</Text>
-							  </Pressable>
+								style={styles.buttonClose}
+								onPress={() => {
+									this.setModalVisible(!this.state.modalVisible);
+								}}
+							>
+								<Text style={styles.buttonTextClose}>Close</Text>
+							</Pressable>
 							  </View>
 			    </View>
 			</Modal>
@@ -167,7 +167,8 @@ const styles = StyleSheet.create ({
 	  width: 400,
       height: 100,
 	  flex: 1,
-	  flexWrap: 'wrap'
+	  flexWrap: 'wrap',
+	  borderRadius: 5
    },
    modalcontainer: {
 		alignItems: 'center',
@@ -201,6 +202,21 @@ const styles = StyleSheet.create ({
     },
 	buttonClose: {
 	  backgroundColor: "#560CCE",
+    },
+    buttonClose: {
+	  	alignItems: 'center',
+    	backgroundColor: 'white',
+    	borderColor: '#560CCE',
+    	padding: 10,
+	  	width: '100%',
+	  	margin: 5,
+	  	borderWidth: 2,
+	  	borderRadius: 5
+    },
+    buttonTextClose:{
+    	textAlign: 'center',
+    	color: '#560CCE',
+    	fontWeight: 'bold'
     },
 	noPurchase: {
 	  alignItems: 'center',

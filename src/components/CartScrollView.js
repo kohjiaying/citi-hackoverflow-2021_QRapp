@@ -100,30 +100,30 @@ class CartScrollView extends Component {
 					renderItem={({item}) => (
 						<View key = {item.itemid} style = {styles.item} 
 							>
-                    		<Text>{item.itemid}</Text>
+                    		<Text style = {{fontWeight: 'bold'}}>{item.itemid}</Text>
 							<TouchableOpacity
-								  style={[styles.button, styles.buttonClose]}
+								  style={styles.buttonClose}
 								  onPress={() => {
 									  this.setSelectedItem(item);
 									  this.setModalVisible(true);
 									  
 								  }}
 							  >
-								  <Text style={styles.textStyle}>Remove from cart</Text>
+								  <Text style={styles.buttonTextClose}>Remove from cart</Text>
 							  </TouchableOpacity>
                 		</View>
 					)}
 				keyExtractor={item => item.itemid}>
 				</FlatList>
 				<View style={styles.purchase}>
-				<Text style={styles.textStyle}>Total Amount Payable:</Text>
+				<Text style={{fontWeight: 'bold'}}>Total Amount Payable:</Text>
 				<TouchableOpacity
 					  style={[styles.purchasebutton, styles.purchasebuttonClose]}
 					  onPress={() => {
 						  this.handlePurhased(this.state.cartDatabase);
 					  }}
 				  >
-					  <Text style={styles.textStyle}>Check Out Cart.</Text>
+					  <Text style={styles.buttonText}>Check Out Cart</Text>
 				 </TouchableOpacity>
 				
 				</View>
@@ -140,21 +140,21 @@ class CartScrollView extends Component {
 							  <View style={styles.modalcard}>
 							  <Text style={{fontSize: 20, padding: 5}}>Are you sure you want to remove voucher from cart?</Text>
 							  <TouchableOpacity
-								  style={[styles.button, styles.buttonClose]}
+								  style={styles.button}
 								  onPress={() => {
 									  this.onPressButton(this.state.selectedItem);
 									  this.setModalVisible(!this.state.modalVisible);
 								  }}
 							  >
-								  <Text style={styles.textStyle}>Yes</Text>
+								  <Text style={styles.buttonText}>Yes</Text>
 							  </TouchableOpacity>
 							  <TouchableOpacity
-								  style={[styles.button, styles.buttonClose]}
+								  style={styles.buttonClose}
 								  onPress={() => {
 									  this.setModalVisible(!this.state.modalVisible);
 								  }}
 							  >
-								  <Text style={styles.textStyle}>No</Text>
+								  <Text style={styles.buttonTextClose}>No</Text>
 							  </TouchableOpacity>
 							  </View>
 			    </View>
@@ -180,8 +180,9 @@ const styles = StyleSheet.create ({
       height: 100,
 	  alignItems: 'center',
 	  borderColor: '#414757',
-	  borderWidth: 1,
-	  marginBottom: 10
+	  borderWidth: 2,
+	  marginBottom: 10,
+	  borderRadius: 5
 	  
    },
    modalcontainer: {
@@ -207,47 +208,57 @@ const styles = StyleSheet.create ({
 		alignItems: 'center',
 		justifyContent: 'center',
 	},
-	button: {
-    alignItems: 'center',
-    padding: 10,
-	  width: '100%',
-	  marginBottom: 10,
-	  borderColor: '#414757',
-      borderWidth: 1
+    button: {
+    	alignItems: 'center',
+    	backgroundColor: '#560CCE',
+    	padding: 10,
+	  	margin: 5,
+	  	borderRadius: 5,
+	  	width: '100%'
     },
+    buttonText: {
+    	textAlign: 'center',
+    	padding: 10,
+    	color: 'white',
+    	fontWeight: 'bold'
+  	},
 	buttonClose: {
+	  	alignItems: 'center',
+    	borderColor: '#560CCE',
+    	padding: 10,
+	  	width: '100%',
+	  	margin: 5,
+	  	borderWidth: 2,
+	  	borderRadius: 5
     },
-  buttonText: {
-    textAlign: 'center',
-    padding: 20,
-    color: 'white'
-  },
-  purchasebutton: {
-      alignItems: 'center',
-      backgroundColor: '#560CCE',
-      padding: 10,
-	  width: '100%',
-	  marginTop: 10
-	  
+    buttonTextClose:{
+    	textAlign: 'center',
+    	color: '#560CCE',
+    	fontWeight: 'bold'
+    },
+  	purchasebutton: {
+      	alignItems: 'center',
+      	backgroundColor: '#560CCE',
+      	padding: 10,
+	  	width: '100%',
+	  	marginTop: 10,
+	  	borderRadius: 5
     },
 	purchasebuttonClose: {
-	  backgroundColor: "#560CCE",
+	  	backgroundColor: "#560CCE",
+	  	padding: 10
     },
-  buttonText: {
-    textAlign: 'center',
-    padding: 20,
-    color: 'white'
-  },
-  space: {
-    width: 20,
-    height: 20,
-  },
-  purchase: {
-	alignItems: 'center',
-    justifyContent: 'center',
-    height: 100,
-	borderColor: '#414757',
-    borderWidth: 1
-  },
+  	space: {
+    	width: 20,
+    	height: 20,
+  	},
+  	purchase: {
+		alignItems: 'center',
+    	justifyContent: 'center',
+    	height: 100,
+		borderColor: '#414757',
+    	borderWidth: 2,
+    	borderRadius: 5
+  	},
   
 })
