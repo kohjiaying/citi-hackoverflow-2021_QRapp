@@ -100,7 +100,8 @@ class MyVouchersScrollView extends Component {
 					}}>
 			    <View style={styles.modalcontainer}>
 							  <View style={styles.modalcard}>
-							  <Text style={{fontSize: 20, padding: 5, textDecorationLine: 'underline'}}>this.state.voucherDatabase.find(x => x.voucherid === this.state.selectedvoucherid).voucherName</Text>
+							  <Text style={{fontSize: 20, padding: 5, textDecorationLine: 'underline'}}>{this.state.voucherDatabase.find(x => x.voucherid === this.state.selectedvoucherid) ?
+							  this.state.voucherDatabase.find(x => x.voucherid === this.state.selectedvoucherid).voucherName: ''}</Text>
 							  <QRCode
 									value= {this.state.tempStr}
 									size={300}
