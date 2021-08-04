@@ -121,7 +121,6 @@ class CartScrollView extends Component {
 					  style={[styles.purchasebutton, styles.purchasebuttonClose]}
 					  onPress={() => {
 						  this.handlePurhased(this.state.cartDatabase);
-						  this.setModalVisible(!this.state.modalVisible);
 					  }}
 				  >
 					  <Text style={styles.textStyle}>Check Out Cart.</Text>
@@ -250,4 +249,5 @@ const styles = StyleSheet.create ({
 	borderColor: '#414757',
     borderWidth: 1
   },
+  
 })
