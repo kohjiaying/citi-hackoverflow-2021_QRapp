@@ -42,7 +42,7 @@ render() {
 			 	<View style={styles.scrollViewContainer}>
 				{
                   	this.state.names.map((item, index) => (
-                    <TouchableOpacity key = {item.id} style = {styles.item}
+                    <TouchableOpacity key = {item.storeid} style = {styles.item}
                      	onPress={() => {
                     		this.setModalVisible(true);
 			              	this.setSelectedItem(item); 
