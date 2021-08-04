@@ -24,7 +24,7 @@ export default function MainScreen({ navigation }) {
 		<TouchableOpacity onPress={() => {
 						  navigation.navigate('StoreQRScanScreen')
 		}}>
-		<View style={{flexDirection: "row", borderColor:'black', borderWidth: 1, marginTop:20, margin:5}}>
+		<View style={{flexDirection: "row", borderColor:'black', borderWidth: 1, marginTop:20, margin:5, borderRadius: 5}}>
 			<Icon name="qrcode" size={30} color="black" style={{padding: 10, marginTop:5}}/>
 			<Text style={{fontSize: 18, padding: 5, marginTop: 12}}>Scan store's QR Code to explore vouchers</Text>
 		</View>
@@ -34,7 +34,7 @@ export default function MainScreen({ navigation }) {
 		<TouchableOpacity onPress={() => {
 						  navigation.navigate('PointScreen')
 		}}>
-		<View style={{flexDirection: "row", borderColor:'black', borderWidth: 1, marginTop:20, margin:5}}>
+		<View style={{flexDirection: "row", borderColor:'black', borderWidth: 1, marginTop:20, margin:5, borderRadius: 5, justifyContent: 'center'}}>
 			<Icon name="star" size={20} color="black" style={{padding: 10, marginTop:5}}/>
 			<Text style={{fontSize: 18, padding: 5, marginTop: 7}}>You have 100 points for redemption!</Text>
 			<Icon name="arrow-right" size={18} color="black" style={{padding: 10, marginTop:5}}/>
