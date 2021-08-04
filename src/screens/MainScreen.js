@@ -24,9 +24,10 @@ export default function MainScreen({ navigation }) {
 		<TouchableOpacity onPress={() => {
 						  navigation.navigate('StoreQRScanScreen')
 		}}>
-		<View style={{flexDirection: "row", borderColor:'black', borderWidth: 1, marginTop:20, margin:5, borderRadius: 5}}>
-			<Icon name="qrcode" size={30} color="black" style={{padding: 10, marginTop:5}}/>
-			<Text style={{fontSize: 18, padding: 5, marginTop: 12}}>Scan store's QR Code to explore vouchers</Text>
+		<View style={{flexDirection: "row", borderColor:'black', borderWidth: 1, marginTop:10, margin:5, borderRadius: 5, }}>
+			<Icon name="qrcode" size={30} color="black" style={{padding: 15, marginTop:5}}/>
+			<Text style={{fontSize: 18, padding: 0, marginTop: 10, flex: 1,
+	  flexWrap: 'wrap'}}>Scan store's QR Code to explore vouchers</Text>
 		</View>
 		</TouchableOpacity>
 		<ScrollView>
