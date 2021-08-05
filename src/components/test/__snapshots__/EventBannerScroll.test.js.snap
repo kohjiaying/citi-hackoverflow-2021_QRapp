@@ -1,0 +1,219 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<EventBannerScroll /> renders correctly 1`] = `
+<RCTScrollView
+  bounces={false}
+  decelerationRate="normal"
+  disableIntervalMomentum={true}
+  horizontal={true}
+  onScroll={[Function]}
+  scrollEventThrottle={12}
+  showsHorizontalScrollIndicator={false}
+  snapToInterval={670}
+  style={
+    Object {
+      "marginTop": 20,
+      "paddingHorizontal": 0,
+    }
+  }
+>
+  <View>
+    <View
+      style={
+        Object {
+          "height": 200,
+          "marginLeft": 40,
+          "marginRight": undefined,
+          "opacity": 1,
+          "transform": Array [
+            Object {
+              "scale": 1,
+            },
+          ],
+          "width": 670,
+        }
+      }
+    >
+      <View
+        accessibilityIgnoresInvertColors={true}
+        style={
+          Object {
+            "flex": 1,
+            "justifyContent": "center",
+            "resizeMode": "cover",
+          }
+        }
+      >
+        <Image
+          source={1}
+          style={
+            Array [
+              Object {
+                "bottom": 0,
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+              },
+              Object {
+                "height": undefined,
+                "width": undefined,
+              },
+              Object {
+                "borderRadius": 6,
+              },
+            ]
+          }
+        />
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "height": 200,
+          "marginLeft": undefined,
+          "marginRight": undefined,
+          "opacity": 0.5,
+          "transform": Array [
+            Object {
+              "scale": 0.85,
+            },
+          ],
+          "width": 670,
+        }
+      }
+    >
+      <View
+        accessibilityIgnoresInvertColors={true}
+        style={
+          Object {
+            "flex": 1,
+            "justifyContent": "center",
+            "resizeMode": "cover",
+          }
+        }
+      >
+        <Image
+          source={1}
+          style={
+            Array [
+              Object {
+                "bottom": 0,
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+              },
+              Object {
+                "height": undefined,
+                "width": undefined,
+              },
+              Object {
+                "borderRadius": 6,
+              },
+            ]
+          }
+        />
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "height": 200,
+          "marginLeft": undefined,
+          "marginRight": undefined,
+          "opacity": 0,
+          "transform": Array [
+            Object {
+              "scale": 0.7,
+            },
+          ],
+          "width": 670,
+        }
+      }
+    >
+      <View
+        accessibilityIgnoresInvertColors={true}
+        style={
+          Object {
+            "flex": 1,
+            "justifyContent": "center",
+            "resizeMode": "cover",
+          }
+        }
+      >
+        <Image
+          source={1}
+          style={
+            Array [
+              Object {
+                "bottom": 0,
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+              },
+              Object {
+                "height": undefined,
+                "width": undefined,
+              },
+              Object {
+                "borderRadius": 6,
+              },
+            ]
+          }
+        />
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "height": 200,
+          "marginLeft": undefined,
+          "marginRight": 40,
+          "opacity": -0.5,
+          "transform": Array [
+            Object {
+              "scale": 0.5499999999999999,
+            },
+          ],
+          "width": 670,
+        }
+      }
+    >
+      <View
+        accessibilityIgnoresInvertColors={true}
+        style={
+          Object {
+            "flex": 1,
+            "justifyContent": "center",
+            "resizeMode": "cover",
+          }
+        }
+      >
+        <Image
+          source={1}
+          style={
+            Array [
+              Object {
+                "bottom": 0,
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+              },
+              Object {
+                "height": undefined,
+                "width": undefined,
+              },
+              Object {
+                "borderRadius": 6,
+              },
+            ]
+          }
+        />
+      </View>
+    </View>
+  </View>
+</RCTScrollView>
+`;
