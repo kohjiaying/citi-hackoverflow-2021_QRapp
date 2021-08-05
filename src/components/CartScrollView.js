@@ -63,7 +63,6 @@ class CartScrollView extends Component {
 	  batch.commit()
 	  alert('Thank you for your purchase!')
 	  this.setState({cartDatabase: null});
-	  this.setState({cartDatabase: null});
 	  this.setState({isLoading: true});
 	  this.setState({isLoading: true});
 	  this.forceUpdate()
