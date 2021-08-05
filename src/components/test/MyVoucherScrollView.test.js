@@ -13,7 +13,7 @@ describe('<MyVoucherScrollView />', () => {
   });
 
   test('No vouchers shown', async () => {
-    const { getByTestId } = renderer.create(<PostList userid={'1234'}/>).toJSON;
+    const { getByTestId } = renderer.create(<MyVouchersScrollView userid={'1234'}/>).toJSON;
 
     await waitForElement(() => {
       return getByTestId('empty');

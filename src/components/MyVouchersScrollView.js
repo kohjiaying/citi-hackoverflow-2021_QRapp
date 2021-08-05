@@ -7,7 +7,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 class MyVouchersScrollView extends Component {
 
 	getPurchasedDatabase() {
-		firebase.firestore().collection('purchased').where('userid', '==', userid).get()
+		firebase.firestore().collection('purchased').where('userid', '==', this.state.user.userid).get()
 			.then(querySnapshot => {
 				const results = []
 				querySnapshot.docs.map(documentSnapshot => results.push(documentSnapshot.data()))
@@ -19,7 +19,6 @@ class MyVouchersScrollView extends Component {
 	state = {
 		modalVisible: false,
 		user: { 'email': 'janedoe@gmail.com', 'name': 'Jane Doe', 'userid': '8731' },
-		userid:'8731',
 		purchaseDatabase: [],
 		voucherDatabase: [
 			{ link: require("../assets/images/mainHeaderScrollView/biryani.jpg"), voucherName: '1-For-1 Briyani Set', voucherDesc: 'Satiate your cravings for double the servings, giving you double the satisfaction', voucherPrice: '600', voucherid: '1000', storeid: '1' },
