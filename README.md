@@ -4,8 +4,8 @@ Install the expo app on your phone. After running the 4 or 5 step, a qr code sho
 1) `git clone url`
 2) `cd citi-hackoverflow-2021_QRapp` (or whatever the cloned folder is called)
 3) `npm install`
-4) `npm run ios`
-5) `npm run android` (I think so)
+4) `expo start`
+5) download expo app on your phone and scan the qr code in the browser launched from step 4 to view app on your phone.
 
 ## Things to note
 Create new branch before commit and push
