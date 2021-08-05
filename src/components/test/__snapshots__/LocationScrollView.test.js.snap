@@ -1,0 +1,799 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<MyLocationScrollView /> renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "marginTop": 10,
+    }
+  }
+>
+  <Text
+    style={
+      Object {
+        "fontSize": 20,
+        "fontWeight": "bold",
+      }
+    }
+  >
+     Stores Around You 
+  </Text>
+  <RCTScrollView
+    horizontal={true}
+  >
+    <View>
+      <View
+        accessible={true}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "backgroundColor": "#560CCE",
+            "borderColor": "#414757",
+            "borderRadius": 3,
+            "borderWidth": 0,
+            "margin": 3,
+            "opacity": 1,
+          }
+        }
+      >
+        <Image
+          source={1}
+          style={
+            Object {
+              "borderColor": "#414757",
+              "borderRadius": 5,
+              "borderWidth": 1,
+              "height": 150,
+              "width": 150,
+            }
+          }
+        />
+        <Text
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 18,
+              "fontWeight": "bold",
+              "textAlign": "center",
+            }
+          }
+        >
+          Bedok
+        </Text>
+      </View>
+      <View
+        accessible={true}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "backgroundColor": "#560CCE",
+            "borderColor": "#414757",
+            "borderRadius": 3,
+            "borderWidth": 0,
+            "margin": 3,
+            "opacity": 1,
+          }
+        }
+      >
+        <Image
+          source={1}
+          style={
+            Object {
+              "borderColor": "#414757",
+              "borderRadius": 5,
+              "borderWidth": 1,
+              "height": 150,
+              "width": 150,
+            }
+          }
+        />
+        <Text
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 18,
+              "fontWeight": "bold",
+              "textAlign": "center",
+            }
+          }
+        >
+          Changi
+        </Text>
+      </View>
+      <View
+        accessible={true}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "backgroundColor": "#560CCE",
+            "borderColor": "#414757",
+            "borderRadius": 3,
+            "borderWidth": 0,
+            "margin": 3,
+            "opacity": 1,
+          }
+        }
+      >
+        <Image
+          source={1}
+          style={
+            Object {
+              "borderColor": "#414757",
+              "borderRadius": 5,
+              "borderWidth": 1,
+              "height": 150,
+              "width": 150,
+            }
+          }
+        />
+        <Text
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 18,
+              "fontWeight": "bold",
+              "textAlign": "center",
+            }
+          }
+        >
+          Simei
+        </Text>
+      </View>
+      <View
+        accessible={true}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "backgroundColor": "#560CCE",
+            "borderColor": "#414757",
+            "borderRadius": 3,
+            "borderWidth": 0,
+            "margin": 3,
+            "opacity": 1,
+          }
+        }
+      >
+        <Image
+          source={1}
+          style={
+            Object {
+              "borderColor": "#414757",
+              "borderRadius": 5,
+              "borderWidth": 1,
+              "height": 150,
+              "width": 150,
+            }
+          }
+        />
+        <Text
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 18,
+              "fontWeight": "bold",
+              "textAlign": "center",
+            }
+          }
+        >
+          Tampines
+        </Text>
+      </View>
+    </View>
+  </RCTScrollView>
+  <Modal
+    animationType="slide"
+    hardwareAccelerated={false}
+    onRequestClose={[Function]}
+    transparent={true}
+    visible={false}
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flex": 1,
+          "justifyContent": "center",
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "white",
+            "borderRadius": 0,
+            "elevation": 5,
+            "height": 450,
+            "margin": 5,
+            "padding": 10,
+            "shadowColor": "#000",
+            "shadowOffset": Object {
+              "height": 100,
+              "width": 100,
+            },
+            "shadowOpacity": 0.25,
+            "shadowRadius": 4,
+            "width": 350,
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "fontSize": 18,
+              "fontWeight": "bold",
+              "marginTop": 0,
+              "padding": 5,
+              "textAlign": "center",
+            }
+          }
+        />
+        <RCTScrollView>
+          <View>
+            <View
+              onPress={[Function]}
+            >
+              <View
+                accessible={true}
+                focusable={false}
+                onClick={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  Object {
+                    "opacity": 1,
+                  }
+                }
+              >
+                <Image
+                  style={
+                    Object {
+                      "borderColor": "#414757",
+                      "borderWidth": 1,
+                      "height": 150,
+                      "margin": 2,
+                      "width": 300,
+                    }
+                  }
+                />
+              </View>
+              <View
+                accessible={true}
+                focusable={false}
+                onClick={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  Object {
+                    "opacity": 1,
+                  }
+                }
+              >
+                <Image
+                  style={
+                    Object {
+                      "borderColor": "#414757",
+                      "borderWidth": 1,
+                      "height": 150,
+                      "margin": 2,
+                      "width": 300,
+                    }
+                  }
+                />
+              </View>
+              <View
+                accessible={true}
+                focusable={false}
+                onClick={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  Object {
+                    "opacity": 1,
+                  }
+                }
+              >
+                <Image
+                  style={
+                    Object {
+                      "borderColor": "#414757",
+                      "borderWidth": 1,
+                      "height": 150,
+                      "margin": 2,
+                      "width": 300,
+                    }
+                  }
+                />
+              </View>
+            </View>
+          </View>
+        </RCTScrollView>
+        <Text
+          style={
+            Object {
+              "height": 20,
+              "width": 20,
+            }
+          }
+        />
+        <View
+          accessible={true}
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "white",
+              "borderColor": "#560CCE",
+              "borderRadius": 5,
+              "borderWidth": 2,
+              "margin": 5,
+              "padding": 10,
+              "width": "100%",
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "color": "#560CCE",
+                "fontWeight": "bold",
+                "textAlign": "center",
+              }
+            }
+          >
+            Close
+          </Text>
+        </View>
+      </View>
+    </View>
+  </Modal>
+</View>
+`;
+
+exports[`<MyVoucherScrollView /> renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "marginTop": 10,
+    }
+  }
+>
+  <Text
+    style={
+      Object {
+        "fontSize": 20,
+        "fontWeight": "bold",
+      }
+    }
+  >
+     Stores Around You 
+  </Text>
+  <RCTScrollView
+    horizontal={true}
+  >
+    <View>
+      <View
+        accessible={true}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "backgroundColor": "#560CCE",
+            "borderColor": "#414757",
+            "borderRadius": 3,
+            "borderWidth": 0,
+            "margin": 3,
+            "opacity": 1,
+          }
+        }
+      >
+        <Image
+          source={1}
+          style={
+            Object {
+              "borderColor": "#414757",
+              "borderRadius": 5,
+              "borderWidth": 1,
+              "height": 150,
+              "width": 150,
+            }
+          }
+        />
+        <Text
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 18,
+              "fontWeight": "bold",
+              "textAlign": "center",
+            }
+          }
+        >
+          Bedok
+        </Text>
+      </View>
+      <View
+        accessible={true}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "backgroundColor": "#560CCE",
+            "borderColor": "#414757",
+            "borderRadius": 3,
+            "borderWidth": 0,
+            "margin": 3,
+            "opacity": 1,
+          }
+        }
+      >
+        <Image
+          source={1}
+          style={
+            Object {
+              "borderColor": "#414757",
+              "borderRadius": 5,
+              "borderWidth": 1,
+              "height": 150,
+              "width": 150,
+            }
+          }
+        />
+        <Text
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 18,
+              "fontWeight": "bold",
+              "textAlign": "center",
+            }
+          }
+        >
+          Changi
+        </Text>
+      </View>
+      <View
+        accessible={true}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "backgroundColor": "#560CCE",
+            "borderColor": "#414757",
+            "borderRadius": 3,
+            "borderWidth": 0,
+            "margin": 3,
+            "opacity": 1,
+          }
+        }
+      >
+        <Image
+          source={1}
+          style={
+            Object {
+              "borderColor": "#414757",
+              "borderRadius": 5,
+              "borderWidth": 1,
+              "height": 150,
+              "width": 150,
+            }
+          }
+        />
+        <Text
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 18,
+              "fontWeight": "bold",
+              "textAlign": "center",
+            }
+          }
+        >
+          Simei
+        </Text>
+      </View>
+      <View
+        accessible={true}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "backgroundColor": "#560CCE",
+            "borderColor": "#414757",
+            "borderRadius": 3,
+            "borderWidth": 0,
+            "margin": 3,
+            "opacity": 1,
+          }
+        }
+      >
+        <Image
+          source={1}
+          style={
+            Object {
+              "borderColor": "#414757",
+              "borderRadius": 5,
+              "borderWidth": 1,
+              "height": 150,
+              "width": 150,
+            }
+          }
+        />
+        <Text
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 18,
+              "fontWeight": "bold",
+              "textAlign": "center",
+            }
+          }
+        >
+          Tampines
+        </Text>
+      </View>
+    </View>
+  </RCTScrollView>
+  <Modal
+    animationType="slide"
+    hardwareAccelerated={false}
+    onRequestClose={[Function]}
+    transparent={true}
+    visible={false}
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flex": 1,
+          "justifyContent": "center",
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "white",
+            "borderRadius": 0,
+            "elevation": 5,
+            "height": 450,
+            "margin": 5,
+            "padding": 10,
+            "shadowColor": "#000",
+            "shadowOffset": Object {
+              "height": 100,
+              "width": 100,
+            },
+            "shadowOpacity": 0.25,
+            "shadowRadius": 4,
+            "width": 350,
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "fontSize": 18,
+              "fontWeight": "bold",
+              "marginTop": 0,
+              "padding": 5,
+              "textAlign": "center",
+            }
+          }
+        />
+        <RCTScrollView>
+          <View>
+            <View
+              onPress={[Function]}
+            >
+              <View
+                accessible={true}
+                focusable={false}
+                onClick={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  Object {
+                    "opacity": 1,
+                  }
+                }
+              >
+                <Image
+                  style={
+                    Object {
+                      "borderColor": "#414757",
+                      "borderWidth": 1,
+                      "height": 150,
+                      "margin": 2,
+                      "width": 300,
+                    }
+                  }
+                />
+              </View>
+              <View
+                accessible={true}
+                focusable={false}
+                onClick={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  Object {
+                    "opacity": 1,
+                  }
+                }
+              >
+                <Image
+                  style={
+                    Object {
+                      "borderColor": "#414757",
+                      "borderWidth": 1,
+                      "height": 150,
+                      "margin": 2,
+                      "width": 300,
+                    }
+                  }
+                />
+              </View>
+              <View
+                accessible={true}
+                focusable={false}
+                onClick={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  Object {
+                    "opacity": 1,
+                  }
+                }
+              >
+                <Image
+                  style={
+                    Object {
+                      "borderColor": "#414757",
+                      "borderWidth": 1,
+                      "height": 150,
+                      "margin": 2,
+                      "width": 300,
+                    }
+                  }
+                />
+              </View>
+            </View>
+          </View>
+        </RCTScrollView>
+        <Text
+          style={
+            Object {
+              "height": 20,
+              "width": 20,
+            }
+          }
+        />
+        <View
+          accessible={true}
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "white",
+              "borderColor": "#560CCE",
+              "borderRadius": 5,
+              "borderWidth": 2,
+              "margin": 5,
+              "padding": 10,
+              "width": "100%",
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "color": "#560CCE",
+                "fontWeight": "bold",
+                "textAlign": "center",
+              }
+            }
+          >
+            Close
+          </Text>
+        </View>
+      </View>
+    </View>
+  </Modal>
+</View>
+`;

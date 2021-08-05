@@ -61,8 +61,10 @@
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-prettier": "^3.2.0",
     "eslint-plugin-react": "^7.21.5",
+    "global-jsdom": "^8.1.0",
     "jest": "^27.0.6",
     "jest-expo": "^42.1.0",
+    "jsdom": "^16.7.0",
     "prettier": "^2.2.1",
     "react-test-renderer": "^17.0.2"
   },

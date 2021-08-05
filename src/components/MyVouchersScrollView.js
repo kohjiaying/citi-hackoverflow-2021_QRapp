@@ -49,8 +49,8 @@ class MyVouchersScrollView extends Component {
 	this.setState({selectedvoucherid: selectedItem.voucherid})
   }
   
-  setQRvalue(selectedItem, expTime, currDate){
-	const combi = selectedItem.itemid + currDate + expTime.toLocaleTimeString()
+  setQRvalue(selectedItem, expTime){
+	const combi = selectedItem.itemid + expTime.toLocaleTimeString()
 	this.setState({tempStr: combi});
   }
   
@@ -69,11 +69,11 @@ class MyVouchersScrollView extends Component {
 		
 		while (isLoading || (this.state.purchaseDatabase.length == 0)) {
 		 this.getPurchasedDatabase()
-		 return <View style={styles.noPurchase}><Text>You have no purchased voucher.</Text></View>
+		 return <View style={styles.noPurchase}><Text testID="empty">You have no purchased voucher.</Text></View>
 		}
 		
       return (
-         <View style={styles.mainContainer}>
+         <View style={styles.mainContainer} testID = "filled">
 		    <View style={styles.headerView}>
 			<Text style={styles.header} >My Vouchers</Text>
 			<Icon name="refresh" size={20} color="white" style={{padding: 10, right:10, position: 'absolute'}} onPress={() => this.onPressButton()}/>
@@ -85,7 +85,7 @@ class MyVouchersScrollView extends Component {
 					   key = {item.itemid} 
 					   style = {styles.item} 
 					   onPress={() => {
-						this.setQRvalue(item, expTime, currDate);
+						this.setQRvalue(item, expTime);
 						this.setSelectedVoucherID(item);
 						this.setSelectedItem(item);
 						this.setModalVisible(true);
@@ -122,13 +122,13 @@ class MyVouchersScrollView extends Component {
 							  <Text>Date this QRCode is generated: {currDate}</Text>
 							  <Text>Time this QRCode will expire: {expTime.toLocaleTimeString()}</Text>
 							  <Pressable
-								style={styles.buttonClose}
-								onPress={() => {
-									this.setModalVisible(!this.state.modalVisible);
-								}}
-							>
-								<Text style={styles.buttonTextClose}>Close</Text>
-							</Pressable>
+								  style={[styles.button, styles.buttonClose]}
+								  onPress={() => {
+									  this.setModalVisible(!this.state.modalVisible);
+								  }}
+							  >
+								  <Text style={styles.textStyle}>Close</Text>
+							  </Pressable>
 							  </View>
 			    </View>
 			</Modal>
@@ -167,8 +167,7 @@ const styles = StyleSheet.create ({
 	  width: 400,
       height: 100,
 	  flex: 1,
-	  flexWrap: 'wrap',
-	  borderRadius: 5
+	  flexWrap: 'wrap'
    },
    modalcontainer: {
 		alignItems: 'center',
@@ -202,21 +201,6 @@ const styles = StyleSheet.create ({
     },
 	buttonClose: {
 	  backgroundColor: "#560CCE",
-    },
-    buttonClose: {
-	  	alignItems: 'center',
-    	backgroundColor: 'white',
-    	borderColor: '#560CCE',
-    	padding: 10,
-	  	width: '100%',
-	  	margin: 5,
-	  	borderWidth: 2,
-	  	borderRadius: 5
-    },
-    buttonTextClose:{
-    	textAlign: 'center',
-    	color: '#560CCE',
-    	fontWeight: 'bold'
     },
 	noPurchase: {
 	  alignItems: 'center',
